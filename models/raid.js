@@ -29,7 +29,7 @@ const RaidSchema = new mongoose.Schema({
   raid_party: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'RaidParty',
-    required: true
+    required: false
   },
   invoice_address: { type: String, required: false },
   start_date: { type: Date, required: false },

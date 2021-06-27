@@ -50,6 +50,56 @@ const resolvers = {
         .populate('commented_raid');
       return response;
     }
+  },
+  Mutation: {
+    async updateRaid(parent, args) {
+      await raid.updateOne(
+        { _id: args['_id'] },
+        {
+          $set: args
+        }
+      );
+      const updatedRaid = await raid.findById(args['_id']);
+      return updatedRaid;
+    },
+    async updateConsultation(parent, args) {
+      await consultation.updateOne(
+        { _id: args['_id'] },
+        {
+          $set: { raid: args['raid_id'] }
+        }
+      );
+      const updatedConsultation = await consultation.findById(args['_id']);
+      return updatedConsultation;
+    },
+    async updateApplication(parent, args) {
+      await application.updateOne(
+        { _id: args['_id'] },
+        { referred_by: args['referrer_id'] }
+      );
+      const updatedApplication = await application.findById(args['_id']);
+      return updatedApplication;
+    },
+    async updateMember(parent, args) {
+      await member.updateOne(
+        { _id: args['_id'] },
+        {
+          $set: args
+        }
+      );
+      const updatedMember = await member.findById(args['_id']);
+      return updatedMember;
+    },
+    async updatePortfolio(parent, args) {
+      await member.updateOne(
+        { _id: args['_id'] },
+        {
+          $set: args
+        }
+      );
+      const updatedPortfolio = await portfolio.findById(args['_id']);
+      return updatedPortfolio;
+    }
   }
 };
 

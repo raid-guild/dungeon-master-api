@@ -123,6 +123,53 @@ const typeDefs = gql`
     raidparties: [RaidParty]
     comments: [Comment]
   }
+
+  type Mutation {
+    updateConsultation(_id: String!, raid_id: String!): Consultation!
+    updateApplication(_id: String!, referrer_id: String!): Application!
+    updateRaid(
+      _id: String!
+      raid_name: String
+      status: String
+      category: String
+      cleric_name: String
+      roles_required: [String!]
+      raid_party: String
+      invoice_address: String
+      start_date: String
+      end_date: String
+      comment: [String!]
+      related_raids: [String!]
+      portfolio: String
+    ): Raid!
+    updateMember(
+      _id: String!
+      name: String
+      email_address: String
+      discord_handle: String
+      telegram_handle: String
+      github_handle: String
+      eth_address: String
+      ens_name: String
+      guild_class: String
+      primary_skills: [String!]
+      secondary_skills: [String!]
+      membership_date: String
+      is_raiding: Boolean
+      championed_by: String
+      application: String
+    ): Member!
+    updatePortfolio(
+      _id: String!
+      project_name: String
+      project_desc: String
+      category: String
+      roles: [String!]
+      case_study: String
+      repo_link: String
+      result_link: String
+    ): Portfolio!
+  }
 `;
 
 module.exports = { typeDefs };
