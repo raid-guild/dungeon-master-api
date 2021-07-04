@@ -9,7 +9,9 @@ const { resolvers } = require('./schema/resolvers');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/rageshipper', {
+const DB_HOST = 'mongo:27017' // localhost;
+
+mongoose.connect(`mongodb://${DB_HOST}/rageshipper`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
