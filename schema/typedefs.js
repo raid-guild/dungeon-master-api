@@ -137,7 +137,7 @@ const typeDefs = gql`
     end_date: String
     # comments: [Comment!]
     # related_raids: [Raid!]
-    portfolio: Portfolio
+    # portfolio: Portfolio
   }
 
   type Mutation {
