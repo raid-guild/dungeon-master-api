@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Consultation {
@@ -74,13 +74,13 @@ const typeDefs = gql`
   }
 
   type Raid {
-    _id: String!
+    _id: String
     raid_name: String!
     status: String!
     category: String!
     cleric_name: String!
-    roles_required: [String!]!
-    raid_party: RaidParty!
+    roles_required: [String!]
+    raid_party: RaidParty
     invoice_address: String
     start_date: String
     end_date: String
@@ -92,12 +92,12 @@ const typeDefs = gql`
   type Portfolio {
     _id: String!
     project_name: String!
-    project_desc: String!
-    category: String!
-    roles: [String!]!
-    case_study: String!
-    repo_link: String!
-    result_link: String!
+    project_desc: String
+    category: String
+    roles: [String!]
+    case_study: String
+    repo_link: String
+    result_link: String
   }
 
   type RaidParty {
@@ -124,7 +124,34 @@ const typeDefs = gql`
     comments: [Comment]
   }
 
+  input RaidInput {
+    _id: String!
+    raid_name: String!
+    status: String!
+    category: String!
+    cleric_name: String!
+    roles_required: [String!]
+    raid_party: RaidParty
+    invoice_address: String
+    start_date: String
+    end_date: String
+    comments: [Comment!]
+    related_raids: [Raid!]
+    portfolio: Portfolio
+  }
+
   type Mutation {
+    createRaid(raid: RaidInput): Raid!
+    createPortfolio(
+      _id: String!
+      project_name: String
+      project_desc: String
+      category: String
+      roles: [String!]
+      case_study: String
+      repo_link: String
+      result_link: String
+    ): Portfolio!
     updateConsultation(_id: String!, raid_id: String!): Consultation!
     updateApplication(_id: String!, referrer_id: String!): Application!
     updateRaid(
