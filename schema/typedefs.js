@@ -123,7 +123,6 @@ const typeDefs = gql`
     raidparties: [RaidParty]
     comments: [Comment]
     raid(id: String): Raid
-    }
   }
 
   ## inputs
