@@ -32,6 +32,12 @@ const resolvers = {
         .populate("portfolio");
       return response;
     },
+
+    async raid(_parent, args, _context, _info) {
+      const { id } = args;
+      const response = await raid.findById(id);
+      return response;
+    },
     async portfolios() {
       const response = await portfolio.find();
       return response;
@@ -59,12 +65,12 @@ const resolvers = {
         category,
         cleric_name,
         roles_required,
-        raid_party,
+        // raid_party,
         invoice_address,
         start_date,
         end_date,
-        comments,
-        related_raids,
+        // comments,
+        // related_raids,
       } = args.raid;
       const newRaid = new raid({
         raid_name,
@@ -72,13 +78,13 @@ const resolvers = {
         category,
         cleric_name,
         roles_required,
-        raid_party,
+        // raid_party,
         invoice_address,
         start_date,
         end_date,
-        comments,
-        related_raids,
-        portfolio,
+        // comments,
+        // related_raids,
+        // portfolio,
       });
       await raid.create(newRaid);
       console.log(newRaid);
