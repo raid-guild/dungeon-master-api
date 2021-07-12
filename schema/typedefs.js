@@ -122,26 +122,32 @@ const typeDefs = gql`
     portfolios: [Portfolio]
     raidparties: [RaidParty]
     comments: [Comment]
+    raid(id: String): Raid
+    }
   }
 
+  ## inputs
+
   input RaidInput {
-    _id: String!
+    _id: String
     raid_name: String!
     status: String!
     category: String!
     cleric_name: String!
     roles_required: [String!]
-    # raid_party: RaidParty
+    # # raid_party: RaidParty
     invoice_address: String
     start_date: String
     end_date: String
-    # comments: [Comment!]
-    # related_raids: [Raid!]
-    # portfolio: Portfolio
+    # # comments: [Comment!]
+    # # related_raids: [Raid!]
+    # # portfolio: Portfolio
   }
 
+  ## mutations
+
   type Mutation {
-    createRaid(raid: RaidInput): Raid!
+    createRaid(raid: RaidInput): Raid
     createPortfolio(
       _id: String!
       project_name: String
