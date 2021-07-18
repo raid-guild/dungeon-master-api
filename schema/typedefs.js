@@ -1,6 +1,27 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  ## enums
+
+  enum PreferredContact {
+    Discord
+    Email
+    Telegram
+  }
+
+  enum ProjectType {
+    New
+    Existing
+  }
+
+  enum AvailableProjectSpecs {
+    Yes
+    Partial
+    None
+  }
+
+  ## types
+
   type Consultation {
     id: ID!
     project_name: String!
@@ -128,7 +149,7 @@ const typeDefs = gql`
   ## inputs
 
   input RaidInput {
-    _id: String
+    _id: ID
     raid_name: String!
     status: String!
     category: String!
@@ -143,10 +164,37 @@ const typeDefs = gql`
     # # portfolio: Portfolio
   }
 
+  input ConsultationInput {
+    id: ID!
+    project_name: String!
+    contact_name: String!
+    contact_email: String!
+    contact_bio: String!
+    contact_discord: String
+    contact_telegram: String
+    preferred_contact: PreferredContact!
+    project_type: String!
+    project_specs: String!
+    specs_link: String
+    project_desc: String!
+    services_req: [String!]!
+    desired_delivery: String
+    budget: String!
+    delivery_priorities: String!
+    additional_info: String!
+    submission_type: String!
+    consultation_hash: String
+    submission_date: String!
+    feedback: String
+    rating: Int
+    raid: RaidInput
+  }
+
   ## mutations
 
   type Mutation {
     createRaid(raid: RaidInput): Raid
+    createConsultation(consultation: ConsultationInput): Consultation
     createPortfolio(
       _id: String!
       project_name: String

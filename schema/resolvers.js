@@ -10,6 +10,7 @@ const resolvers = {
   Query: {
     async consultations() {
       const response = await consultation.find().populate("raid");
+
       return response;
     },
     async applications() {
