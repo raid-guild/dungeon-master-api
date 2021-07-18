@@ -3,22 +3,36 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   ## enums
 
-  enum PreferredContact {
-    Discord
-    Email
-    Telegram
-  }
+  # enum PreferredContact {
+  #   Discord
+  #   Email
+  #   Telegram
+  # }
 
-  enum ProjectType {
-    New
-    Existing
-  }
+  # enum ProjectType {
+  #   New
+  #   Existing
+  # }
 
-  enum AvailableProjectSpecs {
-    Yes
-    Partial
-    None
-  }
+  # enum AvailableProjectSpecs {
+  #   Yes
+  #   Partial
+  #   None
+  # }
+
+  # enum Budget {
+  #   < $5k
+  #    $5k - $20k
+  #   $20k - $50k
+  #   $50k +
+  #   Not Sure
+  # }
+
+  # enum DeliveryPriorities {
+  #   Fast & Polished
+  #   Fast & Inexpensive
+  #   Polished & Inexpensive
+  # }
 
   ## types
 
@@ -165,14 +179,14 @@ const typeDefs = gql`
   }
 
   input ConsultationInput {
-    id: ID!
+    id: ID
     project_name: String!
     contact_name: String!
     contact_email: String!
     contact_bio: String!
     contact_discord: String
     contact_telegram: String
-    preferred_contact: PreferredContact!
+    preferred_contact: String!
     project_type: String!
     project_specs: String!
     specs_link: String

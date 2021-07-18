@@ -59,6 +59,14 @@ const resolvers = {
     },
   },
   Mutation: {
+    createPortfolio: async (_, args, { consultation }, info) => {
+      const newConsultation = new consultation({
+        ...consultation,
+      });
+      await consultation.create(newConsultation);
+      console.log(newConsultation);
+      return newConsultation;
+    },
     createRaid: async (_, args, context, info) => {
       const {
         raid_name,
