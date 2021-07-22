@@ -67,7 +67,7 @@ const resolvers = {
   },
 
   Mutation: {
-    createPortfolio: async (_, args, { consultation }, info) => {
+    createConsultation: async (_, args, { consultation }, info) => {
       const newConsultation = new consultation({
         ...consultation,
       });
