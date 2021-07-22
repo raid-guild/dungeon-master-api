@@ -136,6 +136,7 @@ const typeDefs = gql`
   ## inputs
 
   # since we arent going to be using create mutations for right now we probably can remove these
+  # ive commented out fields that would require creating additional inputs
 
   input RaidInput {
     _id: ID
@@ -144,13 +145,13 @@ const typeDefs = gql`
     category: String!
     cleric_name: String!
     roles_required: [String!]
-    raid_party: RaidParty
-    invoice_address: String
-    start_date: String
-    end_date: String
-    comments: [Comment!]
-    related_raids: [Raid!]
-    portfolio: Portfolio
+    # raid_party: RaidPartyInput
+    # invoice_address: String
+    # start_date: String
+    # end_date: String
+    # comments: [Comment!]
+    # related_raids: [Raid!]
+    # portfolio: PortfolioInput
   }
 
   input ConsultationInput {
