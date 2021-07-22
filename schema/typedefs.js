@@ -125,6 +125,12 @@ const typeDefs = gql`
     raidparties: [RaidParty]
     comments: [Comment]
     raid(id: String): Raid
+    member(id: String): Member
+    memberByAddress(eth_address: String): Member
+    consultation(id: String): Consultation
+    application(id: String): Consultation
+    portfolio(id: String): Consultation
+    comment(id: String): Comment
   }
 
   ## inputs
