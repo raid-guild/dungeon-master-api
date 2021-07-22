@@ -136,13 +136,13 @@ const typeDefs = gql`
     category: String!
     cleric_name: String!
     roles_required: [String!]
-    # # raid_party: RaidParty
+    raid_party: RaidParty
     invoice_address: String
     start_date: String
     end_date: String
-    # # comments: [Comment!]
-    # # related_raids: [Raid!]
-    # # portfolio: Portfolio
+    comments: [Comment!]
+    related_raids: [Raid!]
+    portfolio: Portfolio
   }
 
   input ConsultationInput {
