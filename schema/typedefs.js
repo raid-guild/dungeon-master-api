@@ -129,6 +129,8 @@ const typeDefs = gql`
 
   ## inputs
 
+  # since we arent going to be using create mutations for right now we probably can remove these
+
   input RaidInput {
     _id: ID
     raid_name: String!
@@ -172,6 +174,8 @@ const typeDefs = gql`
   }
 
   ## mutations
+
+  # we can probably remove the create mutations since we're focusing on graphql for  mostly reads for now
 
   type Mutation {
     createRaid(raid: RaidInput): Raid
