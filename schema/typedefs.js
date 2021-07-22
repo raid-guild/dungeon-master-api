@@ -3,11 +3,11 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   ## enums
 
-  # enum PreferredContact {
-  #   Discord
-  #   Email
-  #   Telegram
-  # }
+  enum PreferredContact {
+    Discord
+    Email
+    Telegram
+  }
 
   # enum ProjectType {
   #   New

@@ -58,6 +58,14 @@ const resolvers = {
       return response;
     },
   },
+
+  RaidParty: {
+    raid(parent) {
+      //filter db to find and return RaidParty connected to the connected raid -- something like
+      return raidparties.filter((raidparty) => raidparty.raid === parent.raid);
+    },
+  },
+
   Mutation: {
     createPortfolio: async (_, args, { consultation }, info) => {
       const newConsultation = new consultation({
