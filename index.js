@@ -8,7 +8,6 @@ const { typeDefs } = require("./schema/typedefs");
 const { resolvers } = require("./schema/resolvers");
 
 const app = express();
-
 const DB_HOST = "mongo:27017"; // localhost;
 
 mongoose.connect(`mongodb://${DB_HOST}/rageshipper`, {
@@ -22,4 +21,4 @@ server.applyMiddleware({ app });
 app.use(express.json());
 app.use("/create", (req, res, next) => next(), CREATE_ROUTER);
 
-app.listen(5000, () => console.log("Listening.."));
+app.listen(5000, () => console.log("Listening..."));

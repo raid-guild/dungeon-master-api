@@ -9,6 +9,9 @@ services:
       - mongo
     links:
       - mongo
+    volumes:
+      - .:/app/src
+    command: npm run start:dev
   mongo:
     container_name: mongo
     image: mongo

@@ -10,6 +10,7 @@ const resolvers = {
   Query: {
     async consultations() {
       const response = await consultation.find().populate("raid");
+
       return response;
     },
     async applications() {
@@ -32,10 +33,32 @@ const resolvers = {
         .populate("portfolio");
       return response;
     },
-
-    async raid(_parent, args, _context, _info) {
-      const { id } = args;
+    async raid(_parent, { id }, _context, _info) {
       const response = await raid.findById(id);
+      return response;
+    },
+    async member(_parent, { id }, _context, _info) {
+      const response = await member.findById(id);
+      return response;
+    },
+    async memberByEthAddress(_parent, { eth_address }, _context, _info) {
+      const response = await member.findOne({ eth_address: eth_address });
+      return response;
+    },
+    async consultation(_parent, { id }, _context, _info) {
+      const response = await consultation.findById(id);
+      return response;
+    },
+    async application(_parent, { id }, _context, _info) {
+      const response = await application.findById(id);
+      return response;
+    },
+    async portfolio(_parent, { id }, _context, _info) {
+      const response = await portfolio.findById(id);
+      return response;
+    },
+    async comment(_parent, { id }, _context, _info) {
+      const response = await comment.findById(id);
       return response;
     },
     async portfolios() {
@@ -57,7 +80,24 @@ const resolvers = {
       return response;
     },
   },
+
+  // we can likely remove this as the other resolvers handle data collection relations
+  RaidParty: {
+    raid(parent) {
+      //filter db to find and return RaidParty connected to the connected raid -- something like
+      return raidparties.filter((raidparty) => raidparty.raid === parent.raid);
+    },
+  },
+
   Mutation: {
+    createConsultation: async (_, args, { consultation }, info) => {
+      const newConsultation = new consultation({
+        ...consultation,
+      });
+      await consultation.create(newConsultation);
+      console.log(newConsultation);
+      return newConsultation;
+    },
     createRaid: async (_, args, context, info) => {
       const {
         raid_name,

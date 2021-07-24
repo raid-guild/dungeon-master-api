@@ -1,6 +1,8 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  ## types
+
   type Consultation {
     id: ID!
     project_name: String!
@@ -123,30 +125,68 @@ const typeDefs = gql`
     raidparties: [RaidParty]
     comments: [Comment]
     raid(id: String): Raid
+    member(id: String): Member
+    memberByAddress(eth_address: String): Member
+    consultation(id: String): Consultation
+    application(id: String): Consultation
+    portfolio(id: String): Consultation
+    comment(id: String): Comment
   }
 
   ## inputs
 
+  # since we arent going to be using create mutations for right now we probably can remove these
+  # ive commented out fields that would require creating additional inputs
+
   input RaidInput {
-    _id: String
+    _id: ID
     raid_name: String!
     status: String!
     category: String!
     cleric_name: String!
     roles_required: [String!]
-    # # raid_party: RaidParty
-    invoice_address: String
-    start_date: String
-    end_date: String
-    # # comments: [Comment!]
-    # # related_raids: [Raid!]
-    # # portfolio: Portfolio
+    # raid_party: RaidPartyInput
+    # invoice_address: String
+    # start_date: String
+    # end_date: String
+    # comments: [Comment!]
+    # related_raids: [Raid!]
+    # portfolio: PortfolioInput
+  }
+
+  input ConsultationInput {
+    id: ID
+    project_name: String!
+    contact_name: String!
+    contact_email: String!
+    contact_bio: String!
+    contact_discord: String
+    contact_telegram: String
+    preferred_contact: String!
+    project_type: String!
+    project_specs: String!
+    specs_link: String
+    project_desc: String!
+    services_req: [String!]!
+    desired_delivery: String
+    budget: String!
+    delivery_priorities: String!
+    additional_info: String!
+    submission_type: String!
+    consultation_hash: String
+    submission_date: String!
+    feedback: String
+    rating: Int
+    raid: RaidInput
   }
 
   ## mutations
 
+  # we can probably remove the create mutations since we're focusing on graphql for  mostly reads for now
+
   type Mutation {
     createRaid(raid: RaidInput): Raid
+    createConsultation(consultation: ConsultationInput): Consultation
     createPortfolio(
       _id: String!
       project_name: String
