@@ -1,6 +1,7 @@
 const express = require('express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 const { ApolloServer } = require('apollo-server-express');
 
@@ -83,6 +84,7 @@ function createServer() {
 
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
+  app.use(cors());
   app.use(express.json());
 
   const server = new ApolloServer({ typeDefs, resolvers });
