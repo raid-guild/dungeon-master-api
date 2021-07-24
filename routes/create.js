@@ -1,96 +1,208 @@
-const express = require("express");
+const express = require('express');
 
-const application = require("../models/application");
-const consultation = require("../models/consultation");
-const member = require("../models/member");
-const raid = require("../models/raid");
-const portfolio = require("../models/portfolio");
-const raidparty = require("../models/raidparty");
-const comment = require("../models/comment");
+const { createConsultation } = require('../controllers/consultation');
+const { createApplication } = require('../controllers/application');
+const { createMember } = require('../controllers/member');
+const { createRaid } = require('../controllers/raid');
+const { createPortfolio } = require('../controllers/portfolio');
+const { createRaidParty } = require('../controllers/raidparty');
+const { createComment } = require('../controllers/comment');
 
 const CREATE_ROUTER = express.Router();
 
-CREATE_ROUTER.post("/consultation", async (req, res) => {
+/**
+ * @swagger
+ * /create/consultation:
+ *   post:
+ *     tags: [Consultations]
+ *     requestBody:
+ *        name: consultation
+ *        description: New consultation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Consultation'
+ *     responses:
+ *       201:
+ *         description: Created a consultation
+ */
+
+CREATE_ROUTER.post('/consultation', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await consultation.create(record);
+    const response = await createConsultation(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR", error: err });
+    res.json({ status: 'ERROR', error: err });
   }
 });
 
-CREATE_ROUTER.post("/application", async (req, res) => {
+/**
+ * @swagger
+ * /create/application:
+ *   post:
+ *     tags: [Applications]
+ *     requestBody:
+ *        name: application
+ *        description: New application
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Application'
+ *     responses:
+ *       201:
+ *         description: Created a application
+ */
+
+CREATE_ROUTER.post('/application', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await application.create(record);
+    const response = await createApplication(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
-CREATE_ROUTER.post("/member", async (req, res) => {
+/**
+ * @swagger
+ * /create/member:
+ *   post:
+ *     tags: [Members]
+ *     requestBody:
+ *        name: member
+ *        description: New member
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Member'
+ *     responses:
+ *       201:
+ *         description: Created a member
+ */
+
+CREATE_ROUTER.post('/member', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await member.create(record);
+    const response = await createMember(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
-CREATE_ROUTER.post("/raid", async (req, res) => {
+/**
+ * @swagger
+ * /create/raid:
+ *   post:
+ *     tags: [Raids]
+ *     requestBody:
+ *        name: raid
+ *        description: New raid
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Raid'
+ *     responses:
+ *       201:
+ *         description: Created a raid
+ */
+
+CREATE_ROUTER.post('/raid', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await raid.create(record);
+    const response = await createRaid(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
-CREATE_ROUTER.post("/portfolio", async (req, res) => {
+/**
+ * @swagger
+ * /create/portfolio:
+ *   post:
+ *     tags: [Portfolios]
+ *     requestBody:
+ *        name: portfolio
+ *        description: New portfolio
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Portfolio'
+ *     responses:
+ *       201:
+ *         description: Created a portfolio
+ */
+
+CREATE_ROUTER.post('/portfolio', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await portfolio.create(record);
+    const response = await createPortfolio(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
-CREATE_ROUTER.post("/raidparty", async (req, res) => {
+/**
+ * @swagger
+ * /create/raidparty:
+ *   post:
+ *     tags: [RaidParties]
+ *     requestBody:
+ *        name: raidparty
+ *        description: New raidparty
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/RaidParty'
+ *     responses:
+ *       201:
+ *         description: Created a raidparty
+ */
+
+CREATE_ROUTER.post('/raidparty', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await raidparty.create(record);
+    const response = await createRaidParty(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
-CREATE_ROUTER.post("/comment", async (req, res) => {
+/**
+ * @swagger
+ * /create/comment:
+ *   post:
+ *     tags: [Comments]
+ *     requestBody:
+ *        name: comment
+ *        description: New comment
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/Comment'
+ *     responses:
+ *       201:
+ *         description: Created a comment
+ */
+
+CREATE_ROUTER.post('/comment', async (req, res) => {
   try {
-    const record = req.body;
-    const response = await comment.create(record);
+    const response = await createComment(req.body);
     console.log(response);
-    res.json({ status: "OK" });
+    res.json({ status: 'OK' });
   } catch (err) {
     console.log(err);
-    res.json({ status: "ERROR" });
+    res.json({ status: 'ERROR' });
   }
 });
 
