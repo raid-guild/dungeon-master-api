@@ -99,6 +99,8 @@ function createServer() {
   app.use('/create', (req, res, next) => next(), CREATE_ROUTER);
   app.use('/update', (req, res, next) => next(), UPDATE_ROUTER);
 
+  app.get('/', (req, res) => res.json('Welcome to Dungeon Master!'));
+
   return app;
 }
 
