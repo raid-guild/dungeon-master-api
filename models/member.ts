@@ -7,6 +7,11 @@ interface MemberDocument extends MemberInterface, Document {}
 
 const MemberSchema = new Schema<MemberDocument>(
   {
+    legacy_id: {
+      type: String,
+      required: true,
+      immutable: false
+    },
     name: {
       type: String,
       required: true,
@@ -99,6 +104,7 @@ const MemberSchema = new Schema<MemberDocument>(
  *      Member:
  *        type: object
  *        required:
+ *          - legacy_id
  *          - name
  *          - email_address
  *          - discord_handle
@@ -109,6 +115,8 @@ const MemberSchema = new Schema<MemberDocument>(
  *          - membership_date
  *          - is_raiding
  *        properties:
+ *          legacy_id:
+ *            type: string
  *          name:
  *            type: string
  *          email_address:
