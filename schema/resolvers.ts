@@ -1,13 +1,12 @@
-const application = require('../models/application');
-const consultation = require('../models/consultation');
-const member = require('../models/member');
-const raid = require('../models/raid');
-const portfolio = require('../models/portfolio');
-const raidparty = require('../models/raidparty');
-const comment = require('../models/comment');
-const { __Directive } = require('graphql');
+import { Application as application } from '../models/application';
+import { Consultation as consultation } from '../models/consultation';
+import { Member as member } from '../models/member';
+import { Raid as raid } from '../models/raid';
+import { Portfolio as portfolio } from '../models/portfolio';
+import { RaidParty as raidparty } from '../models/raidparty';
+import { Comment as comment } from '../models/comment';
 
-const resolvers = {
+export const resolvers = {
   Query: {
     async consultations() {
       const response = await consultation.find().populate('raid');
@@ -53,7 +52,7 @@ const resolvers = {
     },
 
     // individual record resolvers
-    async raid(parent, { _id }) {
+    async raid(parent: any, { _id }: any) {
       const response = await raid
         .findById(_id)
         .populate('raid_party')
@@ -62,7 +61,7 @@ const resolvers = {
         .populate('portfolio');
       return response;
     },
-    async member(parent, { filters }) {
+    async member(parent: any, { filters }: any) {
       const shouldApplyIdFilter = filters._id ? true : false;
 
       const response = shouldApplyIdFilter
@@ -79,26 +78,26 @@ const resolvers = {
 
       return response;
     },
-    async consultation(parent, { _id }) {
+    async consultation(parent: any, { _id }: any) {
       const response = await consultation.findById(_id).populate('raid');
       return response;
     },
-    async application(parent, { _id }) {
+    async application(parent: any, { _id }: any) {
       const response = await application.findById(_id).populate('referred_by');
       return response;
     },
-    async portfolio(parent, { _id }) {
+    async portfolio(parent: any, { _id }: any) {
       const response = await portfolio.findById(_id);
       return response;
     },
-    async raidparty(parent, { _id }) {
+    async raidparty(parent: any, { _id }: any) {
       const response = await raidparty
         .findById(_id)
         .populate('members')
         .populate('raid');
       return response;
     },
-    async comment(parent, { _id }) {
+    async comment(parent: any, { _id }: any) {
       const response = await comment
         .findById(_id)
         .populate('commented_by')
@@ -107,5 +106,3 @@ const resolvers = {
     }
   }
 };
-
-module.exports = { resolvers };

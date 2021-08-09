@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const createServer = require('./server');
+import mongoose from 'mongoose';
+import createServer from './server';
 
 require('dotenv').config();
 
@@ -12,4 +12,4 @@ mongoose
     const app = createServer();
     app.listen(process.env.PORT || 5000, () => console.log('Listening..'));
   })
-  .catch((err) => console.log(err));
+  .catch((err: any) => console.log(err));
