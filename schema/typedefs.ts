@@ -1,6 +1,6 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Consultation {
     _id: ID!
     project_name: String!
@@ -21,10 +21,11 @@ const typeDefs = gql`
     additional_info: String!
     submission_type: String!
     consultation_hash: String
-    submission_date: String!
     feedback: String
     rating: Int
     raid: Raid
+    created_at: String!
+    modified_at: String!
   }
 
   type Application {
@@ -52,7 +53,8 @@ const typeDefs = gql`
     handbook_read: Boolean!
     pledge_readiness: Boolean!
     referred_by: Member
-    submission_date: String
+    created_at: String!
+    modified_at: String!
   }
 
   type Member {
@@ -71,8 +73,8 @@ const typeDefs = gql`
     is_raiding: Boolean!
     championed_by: Member
     application: Application
-    created_on: String!
-    modified_on: String!
+    created_at: String!
+    modified_at: String!
   }
 
   type Raid {
@@ -89,8 +91,8 @@ const typeDefs = gql`
     comments: [Comment!]
     related_raids: [Raid!]
     portfolio: Portfolio
-    created_on: String!
-    modified_on: String!
+    created_at: String!
+    modified_at: String!
   }
 
   type Portfolio {
@@ -102,25 +104,25 @@ const typeDefs = gql`
     case_study: String
     repo_link: String
     result_link: String
-    created_on: String!
-    modified_on: String!
+    created_at: String!
+    modified_at: String!
   }
 
   type RaidParty {
     _id: ID!
     members: [Member!]!
     raid: Raid!
-    created_on: String!
-    modified_on: String!
+    created_at: String!
+    modified_at: String!
   }
 
   type Comment {
     _id: ID!
     comment: String!
     commented_by: Member!
-    commented_on: String!
     commented_raid: Raid!
-    modified_on: String!
+    created_at: String!
+    modified_at: String!
   }
 
   type Query {
@@ -146,5 +148,3 @@ const typeDefs = gql`
     eth_address: String
   }
 `;
-
-module.exports = { typeDefs };
