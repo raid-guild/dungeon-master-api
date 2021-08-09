@@ -85,6 +85,7 @@ export interface ConsultationInterface {
 }
 
 export interface MemberInterface {
+  legacy_id: string;
   name: string;
   email_address: string;
   discord_handle: string;
