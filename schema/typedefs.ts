@@ -24,8 +24,8 @@ export const typeDefs = gql`
     feedback: String
     rating: Int
     raid: Raid
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Application {
@@ -53,8 +53,8 @@ export const typeDefs = gql`
     handbook_read: Boolean!
     pledge_readiness: Boolean!
     referred_by: Member
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Member {
@@ -74,8 +74,8 @@ export const typeDefs = gql`
     is_raiding: Boolean!
     championed_by: Member
     application: Application
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Raid {
@@ -92,8 +92,8 @@ export const typeDefs = gql`
     comments: [Comment!]
     related_raids: [Raid!]
     portfolio: Portfolio
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Portfolio {
@@ -105,16 +105,16 @@ export const typeDefs = gql`
     case_study: String
     repo_link: String
     result_link: String
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type RaidParty {
     _id: ID!
     members: [Member!]!
     raid: Raid!
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Comment {
@@ -122,8 +122,8 @@ export const typeDefs = gql`
     comment: String!
     commented_by: Member!
     commented_raid: Raid!
-    created_at: String!
-    modified_at: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Query {
