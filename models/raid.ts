@@ -24,8 +24,9 @@ const RaidSchema = new Schema<RaidDocument>(
       required: true,
       immutable: false
     },
-    cleric_name: {
-      type: String,
+    cleric: {
+      type: Schema.Types.ObjectId,
+      ref: 'Member',
       required: true,
       immutable: false
     },
