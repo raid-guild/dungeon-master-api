@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { PopulatedDoc } from 'mongoose';
 
 export type Skills = string[];
@@ -27,6 +28,12 @@ export type GuildClass = string;
 export type RaidCategory = string;
 
 export type RaidStatus = string;
+
+export type RaidLegacy = {
+  airtable_id: string;
+  escrow_index: number;
+  locker_hash: string;
+};
 
 export interface ApplicationInterface {
   name: string;
@@ -116,7 +123,7 @@ export interface RaidInterface {
   raid_name: string;
   status: RaidStatus;
   category: RaidCategory;
-  cleric_name: string;
+  cleric: string;
   roles_required?: GuildClass[];
   raid_party?: PopulatedDoc<RaidPartyInterface>;
   invoice_address?: string;
@@ -125,6 +132,7 @@ export interface RaidInterface {
   comments?: PopulatedDoc<CommentInterface[]>;
   related_raids?: PopulatedDoc<RaidInterface[]>;
   portfolio?: PopulatedDoc<PortfolioInterface>;
+  legacy?: RaidLegacy;
 }
 
 export interface RaidPartyInterface {

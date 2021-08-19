@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   type Consultation {
@@ -78,12 +78,18 @@ export const typeDefs = gql`
     modifiedAt: String!
   }
 
+  type RaidLegacy {
+    airtable_id: ID!
+    escrow_index: Int
+    locker_hash: String
+  }
+
   type Raid {
     _id: ID!
     raid_name: String!
     status: String!
     category: String!
-    cleric: Member
+    cleric: Member!
     roles_required: [String!]
     raid_party: RaidParty
     invoice_address: String
@@ -92,6 +98,7 @@ export const typeDefs = gql`
     comments: [Comment!]
     related_raids: [Raid!]
     portfolio: Portfolio
+    legacy: RaidLegacy
     createdAt: String!
     modifiedAt: String!
   }
