@@ -116,7 +116,7 @@ export interface RaidInterface {
   raid_name: string;
   status: RaidStatus;
   category: RaidCategory;
-  cleric_name: string;
+  cleric: string;
   roles_required?: GuildClass[];
   raid_party?: PopulatedDoc<RaidPartyInterface>;
   invoice_address?: string;

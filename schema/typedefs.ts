@@ -83,7 +83,7 @@ export const typeDefs = gql`
     raid_name: String!
     status: String!
     category: String!
-    cleric: Member
+    cleric: Member!
     roles_required: [String!]
     raid_party: RaidParty
     invoice_address: String

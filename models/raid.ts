@@ -89,7 +89,7 @@ const RaidSchema = new Schema<RaidDocument>(
  *          - raid_name
  *          - status
  *          - category
- *          - cleric_name
+ *          - cleric
  *        properties:
  *          raid_name:
  *            type: string
@@ -97,7 +97,7 @@ const RaidSchema = new Schema<RaidDocument>(
  *            type: string
  *          category:
  *            type: string
- *          cleric_name:
+ *          cleric:
  *            type: string
  *          roles_required:
  *            type: array

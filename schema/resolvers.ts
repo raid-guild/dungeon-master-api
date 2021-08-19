@@ -26,6 +26,7 @@ export const resolvers = {
     async raids() {
       const response = await raid
         .find()
+        .populate('cleric')
         .populate('raid_party')
         .populate('comments')
         .populate('related_raids')
@@ -55,6 +56,7 @@ export const resolvers = {
     async raid(parent: any, { _id }: any) {
       const response = await raid
         .findById(_id)
+        .populate('cleric')
         .populate('raid_party')
         .populate('comments')
         .populate('related_raids')
