@@ -74,6 +74,20 @@ const RaidSchema = new Schema<RaidDocument>(
       ref: 'Portfolio',
       required: false,
       immutable: false
+    },
+    legacy: {
+      airtable_id: {
+        type: String,
+        required: false
+      },
+      escrow_index: {
+        type: Number,
+        required: false
+      },
+      locker_hash: {
+        type: String,
+        required: false
+      }
     }
   },
   { timestamps: true }
@@ -121,6 +135,15 @@ const RaidSchema = new Schema<RaidDocument>(
  *              type: string
  *          portfolio:
  *            type: string
+ *          legacy:
+ *            type: object
+ *            properties:
+ *              airtable_id:
+ *                type: string
+ *              escrow_index:
+ *                type: number
+ *              locker_hash:
+ *                type: string
  */
 
 export const Raid = model<RaidDocument>('Raid', RaidSchema);

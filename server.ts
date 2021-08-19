@@ -1,8 +1,9 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction, Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import CREATE_ROUTER from './routes/create';
 import UPDATE_ROUTER from './routes/update';
@@ -10,7 +11,7 @@ import UPDATE_ROUTER from './routes/update';
 import { typeDefs } from './schema/typedefs';
 import { resolvers } from './schema/resolvers';
 
-require('dotenv').config();
+dotenv.config();
 
 /**
  * @swagger
@@ -61,7 +62,7 @@ require('dotenv').config();
  *   description: Comment management
  */
 
-const createServer = () => {
+const createServer = (): Application => {
   const app = express();
 
   const swaggerOptions = {
