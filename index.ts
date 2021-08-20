@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
-const createServer = require('./server');
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import createServer from './server';
 
-require('dotenv').config();
+dotenv.config();
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rageshipper', {
@@ -12,4 +13,4 @@ mongoose
     const app = createServer();
     app.listen(process.env.PORT || 5000, () => console.log('Listening..'));
   })
-  .catch((err) => console.log(err));
+  .catch((err: any) => console.log(err));

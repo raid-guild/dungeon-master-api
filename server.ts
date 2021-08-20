@@ -1,17 +1,17 @@
-const express = require('express');
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-const cors = require('cors');
+import express, { Request, Response, NextFunction, Application } from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-const { ApolloServer } = require('apollo-server-express');
+import CREATE_ROUTER from './routes/create';
+import UPDATE_ROUTER from './routes/update';
 
-const CREATE_ROUTER = require('./routes/create');
-const UPDATE_ROUTER = require('./routes/update');
+import { typeDefs } from './schema/typedefs';
+import { resolvers } from './schema/resolvers';
 
-const { typeDefs } = require('./schema/typedefs');
-const { resolvers } = require('./schema/resolvers');
-
-require('dotenv').config();
+dotenv.config();
 
 /**
  * @swagger
@@ -62,7 +62,7 @@ require('dotenv').config();
  *   description: Comment management
  */
 
-function createServer() {
+const createServer = (): Application => {
   const app = express();
 
   const swaggerOptions = {
@@ -79,7 +79,7 @@ function createServer() {
         }
       ]
     },
-    apis: ['./routes/*.js', './models/*.js']
+    apis: ['./routes/*.ts', './models/*.ts']
   };
 
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -96,12 +96,22 @@ function createServer() {
     swaggerUi.setup(swaggerDocs, { explorer: true })
   );
 
-  app.use('/create', (req, res, next) => next(), CREATE_ROUTER);
-  app.use('/update', (req, res, next) => next(), UPDATE_ROUTER);
+  app.use(
+    '/create',
+    (req: Request, res: Response, next: NextFunction) => next(),
+    CREATE_ROUTER
+  );
+  app.use(
+    '/update',
+    (req: Request, res: Response, next: NextFunction) => next(),
+    UPDATE_ROUTER
+  );
 
-  app.get('/', (req, res) => res.json('Welcome to Dungeon Master!'));
+  app.get('/', (req: Request, res: Response) =>
+    res.json('Welcome to Dungeon Master!')
+  );
 
   return app;
-}
+};
 
-module.exports = createServer;
+export default createServer;

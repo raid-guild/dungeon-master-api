@@ -1,6 +1,6 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Consultation {
     _id: ID!
     project_name: String!
@@ -21,10 +21,10 @@ const typeDefs = gql`
     additional_info: String!
     submission_type: String!
     consultation_hash: String
-    submission_date: String!
     feedback: String
     rating: Int
-    raid: Raid
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Application {
@@ -52,11 +52,13 @@ const typeDefs = gql`
     handbook_read: Boolean!
     pledge_readiness: Boolean!
     referred_by: Member
-    submission_date: String
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Member {
     _id: ID!
+    legacy_id: String!
     name: String!
     email_address: String!
     discord_handle: String!
@@ -71,8 +73,14 @@ const typeDefs = gql`
     is_raiding: Boolean!
     championed_by: Member
     application: Application
-    created_on: String!
-    modified_on: String!
+    createdAt: String!
+    modifiedAt: String!
+  }
+
+  type RaidLegacy {
+    airtable_id: ID!
+    escrow_index: Int
+    locker_hash: String
   }
 
   type Raid {
@@ -80,17 +88,19 @@ const typeDefs = gql`
     raid_name: String!
     status: String!
     category: String!
-    cleric_name: String!
+    cleric: Member!
     roles_required: [String!]
     raid_party: RaidParty
     invoice_address: String
     start_date: String
     end_date: String
     comments: [Comment!]
+    consultation: Consultation
     related_raids: [Raid!]
     portfolio: Portfolio
-    created_on: String!
-    modified_on: String!
+    legacy: RaidLegacy
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Portfolio {
@@ -102,25 +112,25 @@ const typeDefs = gql`
     case_study: String
     repo_link: String
     result_link: String
-    created_on: String!
-    modified_on: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type RaidParty {
     _id: ID!
     members: [Member!]!
     raid: Raid!
-    created_on: String!
-    modified_on: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Comment {
     _id: ID!
     comment: String!
     commented_by: Member!
-    commented_on: String!
     commented_raid: Raid!
-    modified_on: String!
+    createdAt: String!
+    modifiedAt: String!
   }
 
   type Query {
@@ -146,5 +156,3 @@ const typeDefs = gql`
     eth_address: String
   }
 `;
-
-module.exports = { typeDefs };
