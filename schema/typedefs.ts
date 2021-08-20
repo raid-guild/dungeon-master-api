@@ -23,7 +23,6 @@ export const typeDefs = gql`
     consultation_hash: String
     feedback: String
     rating: Int
-    raid: Raid
     createdAt: String!
     modifiedAt: String!
   }
@@ -96,6 +95,7 @@ export const typeDefs = gql`
     start_date: String
     end_date: String
     comments: [Comment!]
+    consultation: Consultation
     related_raids: [Raid!]
     portfolio: Portfolio
     legacy: RaidLegacy

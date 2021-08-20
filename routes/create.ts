@@ -30,11 +30,9 @@ const CREATE_ROUTER = express.Router();
 CREATE_ROUTER.post('/consultation', async (req: Request, res: Response) => {
   try {
     const response = await createConsultation(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 
@@ -58,11 +56,9 @@ CREATE_ROUTER.post('/consultation', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/application', async (req: Request, res: Response) => {
   try {
     const response = await createApplication(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 
@@ -86,11 +82,9 @@ CREATE_ROUTER.post('/application', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/member', async (req: Request, res: Response) => {
   try {
     const response = await createMember(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 
@@ -114,11 +108,9 @@ CREATE_ROUTER.post('/member', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/raid', async (req: Request, res: Response) => {
   try {
     const response = await createRaid(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 
@@ -142,11 +134,9 @@ CREATE_ROUTER.post('/raid', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/portfolio', async (req: Request, res: Response) => {
   try {
     const response = await createPortfolio(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 
@@ -170,11 +160,9 @@ CREATE_ROUTER.post('/portfolio', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/raidparty', async (req: Request, res: Response) => {
   try {
     const response = await createRaidParty(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 
@@ -198,11 +186,9 @@ CREATE_ROUTER.post('/raidparty', async (req: Request, res: Response) => {
 CREATE_ROUTER.post('/comment', async (req: Request, res: Response) => {
   try {
     const response = await createComment(req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    res.json(response);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR' });
+    res.json(err);
   }
 });
 

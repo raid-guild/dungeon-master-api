@@ -88,7 +88,6 @@ export interface ConsultationInterface {
   consultation_hash?: string;
   feedback?: string;
   rating?: number;
-  raid?: PopulatedDoc<RaidInterface>;
 }
 
 export interface MemberInterface {
@@ -130,6 +129,7 @@ export interface RaidInterface {
   start_date?: string;
   end_date?: string;
   comments?: PopulatedDoc<CommentInterface[]>;
+  consultation?: PopulatedDoc<ConsultationInterface>;
   related_raids?: PopulatedDoc<RaidInterface[]>;
   portfolio?: PopulatedDoc<PortfolioInterface>;
   legacy?: RaidLegacy;

@@ -21,7 +21,7 @@ import {
 export const resolvers = {
   Query: {
     async consultations(): Promise<ConsultationInterface[]> {
-      const response = await consultation.find().populate('raid');
+      const response = await consultation.find();
       return response;
     },
     async applications(): Promise<ApplicationInterface[]> {
@@ -39,6 +39,7 @@ export const resolvers = {
       const response = await raid
         .find()
         .populate('cleric')
+        .populate('consultation')
         .populate('raid_party')
         .populate('comments')
         .populate('related_raids')
