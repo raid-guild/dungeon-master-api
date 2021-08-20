@@ -63,6 +63,12 @@ const RaidSchema = new Schema<RaidDocument>(
       required: false,
       immutable: false
     },
+    consultation: {
+      type: Schema.Types.ObjectId,
+      ref: 'Consultation',
+      required: false,
+      immutable: false
+    },
     related_raids: {
       type: [Schema.Types.ObjectId],
       ref: 'Raid',
@@ -128,6 +134,8 @@ const RaidSchema = new Schema<RaidDocument>(
  *          comments:
  *            type: array
  *            items:
+ *              type: string
+ *          consultation:
  *              type: string
  *          related_raids:
  *            type: array

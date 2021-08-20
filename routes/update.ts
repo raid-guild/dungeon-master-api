@@ -66,12 +66,10 @@ const UPDATE_ROUTER = express.Router();
 
 UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
   try {
-    const response = await updateMemberById(req.params.id, req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    await updateMemberById(req.params.id, req.body);
+    res.json(req.body);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 
@@ -131,12 +129,10 @@ UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
 
 UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
   try {
-    const response = await updateRaidById(req.params.id, req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    await updateRaidById(req.params.id, req.body);
+    res.json(req.body);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 
@@ -182,12 +178,10 @@ UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
 
 UPDATE_ROUTER.patch('/portfolio/:id', async (req: Request, res: Response) => {
   try {
-    const response = await updatePortfolioById(req.params.id, req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    await updatePortfolioById(req.params.id, req.body);
+    res.json(req.body);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 
@@ -223,12 +217,10 @@ UPDATE_ROUTER.patch('/portfolio/:id', async (req: Request, res: Response) => {
 
 UPDATE_ROUTER.patch('/raidparty/:id', async (req: Request, res: Response) => {
   try {
-    const response = await updateRaidPartyById(req.params.id, req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    await updateRaidPartyById(req.params.id, req.body);
+    res.json(req.body);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 
@@ -262,12 +254,10 @@ UPDATE_ROUTER.patch('/raidparty/:id', async (req: Request, res: Response) => {
 
 UPDATE_ROUTER.patch('/comment/:id', async (req: Request, res: Response) => {
   try {
-    const response = await updateCommentById(req.params.id, req.body);
-    console.log(response);
-    res.json({ status: 'OK' });
+    await updateCommentById(req.params.id, req.body);
+    res.json(req.body);
   } catch (err) {
-    console.log(err);
-    res.json({ status: 'ERROR', error: err });
+    res.json(err);
   }
 });
 

@@ -121,12 +121,6 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
       type: Number,
       required: false,
       immutable: false
-    },
-    raid: {
-      type: Schema.Types.ObjectId,
-      ref: 'Raid',
-      required: false,
-      immutable: false
     }
   },
   { timestamps: true }
@@ -195,8 +189,6 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
  *            type: string
  *          rating:
  *            type: number
- *          raid:
- *            type: string
  */
 
 export const Consultation = model<ConsultationDocument>(
