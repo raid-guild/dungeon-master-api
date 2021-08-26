@@ -57,11 +57,12 @@ export const SKILLS = [
   'Accounting'
 ];
 
-export const SKILL_TYPE = ['Technical', 'Non - Technical', 'Other'];
+export const SKILL_TYPE = ['NA', 'Technical', 'Non - Technical', 'Other'];
 
-export const DAO_FAMILIARITY = ['Expert', 'Familiar', 'A Little', 'None'];
+export const DAO_FAMILIARITY = ['NA', 'Expert', 'Familiar', 'A Little', 'None'];
 
 export const COHORT_AVAILABILITY = [
+  'NA',
   '0-5 hours',
   '6-12 hours',
   '13-35 hours',
