@@ -45,7 +45,8 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
     eth_address: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     ens_name: {
       type: String,
@@ -55,12 +56,14 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
     introduction: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     learning_goals: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     primary_skills: {
       type: [String],
@@ -78,44 +81,52 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
       type: String,
       enum: SKILL_TYPE,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     passion: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     favorite_media: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     crypto_thrills: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     why_raidguild: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     dao_familiarity: {
       type: String,
       enum: DAO_FAMILIARITY,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     availability: {
       type: String,
       enum: COHORT_AVAILABILITY,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     crypto_exp: {
       type: String,
       required: true,
-      immutable: true
+      immutable: true,
+      default: 'NA'
     },
     comments: {
       type: String,
@@ -125,12 +136,14 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
     handbook_read: {
       type: Boolean,
       required: true,
-      immutable: true
+      immutable: true,
+      default: false
     },
     pledge_readiness: {
       type: Boolean,
       required: true,
-      immutable: true
+      immutable: true,
+      default: false
     },
     referred_by: {
       type: Schema.Types.ObjectId,
