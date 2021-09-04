@@ -154,5 +154,6 @@ export const typeDefs = gql`
   input MemberFilter {
     _id: String
     eth_address: String
+    legacy_id: String
   }
 `;
