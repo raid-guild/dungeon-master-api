@@ -78,18 +78,31 @@ export const resolvers = {
     },
     async member(parent: any, { filters }: any): Promise<MemberInterface> {
       const shouldApplyIdFilter = !!filters._id;
+      const shouldApplyEthFilter = !!filters.eth_address;
+      const shouldApplyLegacyFilter = !!filters.legacy_id;
 
-      const response = shouldApplyIdFilter
-        ? await member
-            .findById(filters._id)
-            .populate('championed_by')
-            .populate('application')
-        : await member
-            .findOne({
-              eth_address: filters.eth_address
-            })
-            .populate('championed_by')
-            .populate('application');
+      let response;
+
+      if (shouldApplyIdFilter) {
+        response = await member
+          .findById(filters._id)
+          .populate('championed_by')
+          .populate('application');
+      } else if (shouldApplyEthFilter) {
+        response = await member
+          .findOne({
+            eth_address: filters.eth_address
+          })
+          .populate('championed_by')
+          .populate('application');
+      } else if (shouldApplyLegacyFilter) {
+        response = await member
+          .findOne({
+            legacy_id: filters.legacy_id
+          })
+          .populate('championed_by')
+          .populate('application');
+      }
 
       return response;
     },
