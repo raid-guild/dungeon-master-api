@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Application as application } from '../models/application';
@@ -137,6 +138,22 @@ export const resolvers = {
         .populate('commented_by')
         .populate('commented_raid');
       return response;
+    }
+  },
+  Raid: {
+    raid_party: async (_raid) => {
+      const party = await raidparty.findOne({ raid: _raid._id });
+      return party;
+    }
+  },
+  RaidParty: {
+    members: async (_raidparty) => {
+      const members = [];
+      for await (const _memberId of _raidparty.members) {
+        const _member = await member.findOne({ _id: _memberId });
+        members.push(_member);
+      }
+      return members;
     }
   }
 };
