@@ -59,7 +59,7 @@ export const typeDefs = gql`
   type Member {
     _id: ID!
     legacy_id: String!
-    name: String!
+    name: String
     email_address: String!
     discord_handle: String!
     telegram_handle: String
@@ -88,7 +88,7 @@ export const typeDefs = gql`
     raid_name: String!
     status: String!
     category: String!
-    cleric: Member!
+    cleric: Member
     roles_required: [String!]
     raid_party: RaidParty
     invoice_address: String
