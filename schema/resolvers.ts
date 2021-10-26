@@ -73,6 +73,7 @@ export const resolvers = {
         .populate('cleric')
         .populate('raid_party')
         .populate('comments')
+        .populate('consultation')
         .populate('related_raids')
         .populate('portfolio');
       return response;
