@@ -145,6 +145,10 @@ export const resolvers = {
     raid_party: async (_raid) => {
       const party = await raidparty.findOne({ raid: _raid._id });
       return party;
+    },
+    comments: async (_raid) => {
+      const comments = await comment.find({ commented_raid: _raid._id });
+      return comments;
     }
   },
   RaidParty: {
@@ -155,6 +159,12 @@ export const resolvers = {
         members.push(_member);
       }
       return members;
+    }
+  },
+  Comment: {
+    commented_by: async (_comment) => {
+      const _member = await member.findOne({ _id: _comment.commented_by });
+      return _member;
     }
   }
 };
