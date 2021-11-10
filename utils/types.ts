@@ -139,3 +139,8 @@ export interface RaidPartyInterface {
   members: PopulatedDoc<MemberInterface[]>;
   raid: PopulatedDoc<RaidInterface>;
 }
+
+export interface TokenInterface {
+  token: string;
+  eth_address: string;
+}

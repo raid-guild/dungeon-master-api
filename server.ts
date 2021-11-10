@@ -1,112 +1,89 @@
 import express, { Request, Response, NextFunction, Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import YAML from 'yamljs';
 
+import AUTH_ROUTER from './routes/auth';
 import CREATE_ROUTER from './routes/create';
 import UPDATE_ROUTER from './routes/update';
 
 import { typeDefs } from './schema/typedefs';
 import { resolvers } from './schema/resolvers';
+import { validateRequest } from './auth/token';
+import { CONFIG } from './config';
 
-dotenv.config();
+const apiDoc = YAML.load('./swagger.yaml');
 
-/**
- * @swagger
- * tags:
- *   name: Consultations
- *   description: Consultation management
- */
-
-/**
- * @swagger
- * tags:
- *   name: Applications
- *   description: Application management
- */
-
-/**
- * @swagger
- * tags:
- *   name: Members
- *   description: Member management
- */
-
-/**
- * @swagger
- * tags:
- *   name: Raids
- *   description: Raid management
- */
-
-/**
- * @swagger
- * tags:
- *   name: Portfolios
- *   description: Portfolio management
- */
-
-/**
- * @swagger
- * tags:
- *   name: RaidParties
- *   description: RaidParty management
- */
-
-/**
- * @swagger
- * tags:
- *   name: Comments
- *   description: Comment management
- */
+function initializeApiDocs(_app) {
+  _app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(apiDoc, { explorer: true })
+  );
+}
 
 const createServer = (): Application => {
   const app = express();
 
-  const swaggerOptions = {
-    swaggerDefinition: {
-      openapi: '3.0.0',
-      info: {
-        title: 'Dungeon Master API',
-        version: '1.0.0',
-        description: 'Internal API Reference for Dungeon Master'
-      },
-      servers: [
-        {
-          url: 'http://localhost:5000/'
-        }
-      ]
-    },
-    apis: ['./routes/*.ts', './models/*.ts']
-  };
-
-  const swaggerDocs = swaggerJsDoc(swaggerOptions);
+  initializeApiDocs(app);
 
   app.use(cors());
   app.use(express.json());
 
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => {
+      if (CONFIG.NODE_ENV === 'production') {
+        return validateRequest(req.headers.authorization);
+      }
+      return req;
+    }
+  });
+
   server.applyMiddleware({ app });
 
+  // ---------- TOKEN ROUTES ----------
   app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocs, { explorer: true })
+    '/auth',
+    (req: Request, res: Response, next: NextFunction) => next(),
+    AUTH_ROUTER
   );
 
+  // ---------- CREATE ROUTES ----------
   app.use(
     '/create',
-    (req: Request, res: Response, next: NextFunction) => next(),
+    (req: Request, res: Response, next: NextFunction) => {
+      if (CONFIG.NODE_ENV === 'production') {
+        try {
+          validateRequest(req.headers.authorization);
+          next();
+        } catch (err) {
+          res.status(401).send('Unauthorized');
+        }
+      }
+    },
     CREATE_ROUTER
   );
+
+  // ---------- UPDATE ROUTES ----------
   app.use(
     '/update',
-    (req: Request, res: Response, next: NextFunction) => next(),
+    (req: Request, res: Response, next: NextFunction) => {
+      if (CONFIG.NODE_ENV === 'production') {
+        try {
+          validateRequest(req.headers.authorization);
+          next();
+        } catch (err) {
+          res.status(401).send('Unauthorized');
+        }
+      }
+    },
     UPDATE_ROUTER
   );
 
+  // ---------- ROOT REQUEST ----------
   app.get('/', (req: Request, res: Response) =>
     res.json('Welcome to Dungeon Master!')
   );
