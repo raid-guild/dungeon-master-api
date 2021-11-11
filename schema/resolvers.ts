@@ -93,7 +93,7 @@ export const resolvers = {
       } else if (shouldApplyEthFilter) {
         response = await member
           .findOne({
-            eth_address: filters.eth_address
+            eth_address: filters.eth_address.toLowerCase()
           })
           .populate('championed_by')
           .populate('application');
