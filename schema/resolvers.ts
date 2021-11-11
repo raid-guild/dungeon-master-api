@@ -78,6 +78,23 @@ export const resolvers = {
         .populate('portfolio');
       return response;
     },
+
+    async application(
+      parent: any,
+      { _id }: any
+    ): Promise<ApplicationInterface> {
+      const response = await application.findById(_id).populate('referred_by');
+      return response;
+    },
+
+    async consultation(
+      parent: any,
+      { _id }: any
+    ): Promise<ConsultationInterface> {
+      const response = await consultation.findById(_id).populate('referred_by');
+      return response;
+    },
+
     async member(parent: any, { filters }: any): Promise<MemberInterface> {
       const shouldApplyIdFilter = !!filters._id;
       const shouldApplyEthFilter = !!filters.eth_address;
@@ -93,7 +110,7 @@ export const resolvers = {
       } else if (shouldApplyEthFilter) {
         response = await member
           .findOne({
-            eth_address: filters.eth_address
+            eth_address: filters.eth_address.toLowerCase()
           })
           .populate('championed_by')
           .populate('application');
@@ -108,20 +125,7 @@ export const resolvers = {
 
       return response;
     },
-    async consultation(
-      parent: any,
-      { _id }: any
-    ): Promise<ConsultationInterface> {
-      const response = await consultation.findById(_id).populate('raid');
-      return response;
-    },
-    async application(
-      parent: any,
-      { _id }: any
-    ): Promise<ApplicationInterface> {
-      const response = await application.findById(_id).populate('referred_by');
-      return response;
-    },
+
     async portfolio(parent: any, { _id }: any): Promise<PortfolioInterface> {
       const response = await portfolio.findById(_id);
       return response;
@@ -141,6 +145,7 @@ export const resolvers = {
       return response;
     }
   },
+
   Raid: {
     raid_party: async (_raid) => {
       const party = await raidparty.findOne({ raid: _raid._id });
