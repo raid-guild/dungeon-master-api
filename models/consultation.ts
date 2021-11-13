@@ -121,6 +121,11 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
       type: Number,
       required: false,
       immutable: false
+    },
+    raid: {
+      type: Schema.Types.ObjectId,
+      ref: 'Raid',
+      required: false
     }
   },
   { timestamps: true }

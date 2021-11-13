@@ -22,7 +22,7 @@ import {
 export const resolvers = {
   Query: {
     async consultations(): Promise<ConsultationInterface[]> {
-      const response = await consultation.find();
+      const response = await consultation.find().populate('raid');
       return response;
     },
     async applications(): Promise<ApplicationInterface[]> {
@@ -141,24 +141,34 @@ export const resolvers = {
       return response;
     }
   },
+
+  // Custom resolvers
+  Consultation: {
+    raid: async (_consultation) => {
+      const _raid = await raid.findOne({
+        consultation: _consultation._id
+      });
+      return _raid;
+    }
+  },
   Raid: {
     raid_party: async (_raid) => {
-      const party = await raidparty.findOne({ raid: _raid._id });
-      return party;
+      const _party = await raidparty.findOne({ raid: _raid._id });
+      return _party;
     },
     comments: async (_raid) => {
-      const comments = await comment.find({ commented_raid: _raid._id });
-      return comments;
+      const _comments = await comment.find({ commented_raid: _raid._id });
+      return _comments;
     }
   },
   RaidParty: {
     members: async (_raidparty) => {
-      const members = [];
+      const _members = [];
       for await (const _memberId of _raidparty.members) {
         const _member = await member.findOne({ _id: _memberId });
-        members.push(_member);
+        _members.push(_member);
       }
-      return members;
+      return _members;
     }
   },
   Comment: {

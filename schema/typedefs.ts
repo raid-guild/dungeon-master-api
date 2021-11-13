@@ -23,6 +23,7 @@ export const typeDefs = gql`
     consultation_hash: String
     feedback: String
     rating: Int
+    raid: Raid
     createdAt: String!
     modifiedAt: String!
   }
@@ -143,7 +144,7 @@ export const typeDefs = gql`
     comments: [Comment]
 
     consultation(_id: String): Consultation
-    application(_id: String): Consultation
+    application(_id: String): Application
     member(filters: MemberFilter): Member
     raid(_id: String): Raid
     raidparty(_id: String): RaidParty
