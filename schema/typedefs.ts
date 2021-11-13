@@ -25,7 +25,7 @@ export const typeDefs = gql`
     rating: Int
     raid: Raid
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type Application {
@@ -54,7 +54,7 @@ export const typeDefs = gql`
     pledge_readiness: Boolean!
     referred_by: Member
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type Member {
@@ -75,11 +75,11 @@ export const typeDefs = gql`
     championed_by: Member
     application: Application
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type RaidLegacy {
-    airtable_id: ID!
+    airtable_id: ID
     escrow_index: Int
     locker_hash: String
   }
@@ -101,7 +101,7 @@ export const typeDefs = gql`
     portfolio: Portfolio
     legacy: RaidLegacy
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type Portfolio {
@@ -114,7 +114,7 @@ export const typeDefs = gql`
     repo_link: String
     result_link: String
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type RaidParty {
@@ -122,7 +122,7 @@ export const typeDefs = gql`
     members: [Member!]!
     raid: Raid!
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type Comment {
@@ -131,7 +131,7 @@ export const typeDefs = gql`
     commented_by: Member!
     commented_raid: Raid!
     createdAt: String!
-    modifiedAt: String!
+    updatedAt: String!
   }
 
   type Query {
