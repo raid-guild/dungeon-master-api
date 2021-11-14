@@ -79,6 +79,7 @@ export const resolvers = {
       return response;
     },
     async member(parent: any, { filters }: any): Promise<MemberInterface> {
+      console.log('filters', filters.eth_address.toLowerCase());
       const shouldApplyIdFilter = !!filters._id;
       const shouldApplyEthFilter = !!filters.eth_address;
       const shouldApplyLegacyFilter = !!filters.legacy_id;
@@ -93,7 +94,7 @@ export const resolvers = {
       } else if (shouldApplyEthFilter) {
         response = await member
           .findOne({
-            eth_address: filters.eth_address.toLowerCase()
+            eth_address: { $regex: filters.eth_address, $options: 'i' }
           })
           .populate('championed_by')
           .populate('application');
@@ -105,7 +106,7 @@ export const resolvers = {
           .populate('championed_by')
           .populate('application');
       }
-
+      console.log('response', response);
       return response;
     },
     async consultation(
