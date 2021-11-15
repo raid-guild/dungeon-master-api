@@ -93,7 +93,7 @@ export const resolvers = {
       } else if (shouldApplyEthFilter) {
         response = await member
           .findOne({
-            eth_address: filters.eth_address.toLowerCase()
+            eth_address: { $regex: filters.eth_address, $options: 'i' }
           })
           .populate('championed_by')
           .populate('application');
@@ -105,7 +105,6 @@ export const resolvers = {
           .populate('championed_by')
           .populate('application');
       }
-
       return response;
     },
     async consultation(
