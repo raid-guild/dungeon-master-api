@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import createServer from './server';
 
-dotenv.config();
+import { CONFIG } from './config';
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rageshipper', {
+  .connect(CONFIG.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
     const app = createServer();
-    app.listen(process.env.PORT || 5000, () => console.log('Listening..'));
+    app.listen(CONFIG.PORT, () => console.log('Listening..'));
   })
   .catch((err: any) => console.log(err));
