@@ -27,23 +27,4 @@ const CommentSchema = new Schema<CommentDocument>(
   { timestamps: true }
 );
 
-/**
- * @swagger
- *  components:
- *    schemas:
- *      Comment:
- *        type: object
- *        required:
- *          - comment
- *          - commented_by
- *          - commented_raid
- *        properties:
- *          comment:
- *            type: string
- *          commented_by:
- *            type: string
- *          commented_raid:
- *            type: string
- */
-
 export const Comment = model<CommentDocument>('Comment', CommentSchema);

@@ -48,37 +48,4 @@ const PortfolioSchema = new Schema<PortfolioDocument>(
   { timestamps: true }
 );
 
-/**
- * @swagger
- *  components:
- *    schemas:
- *      Portfolio:
- *        type: object
- *        required:
- *          - project_name
- *          - project_desc
- *          - category
- *          - roles
- *          - case_study
- *          - repo_link
- *          - result_link
- *        properties:
- *          project_name:
- *            type: string
- *          project_desc:
- *            type: string
- *          category:
- *            type: string
- *          roles:
- *            type: array
- *            items:
- *              type: string
- *          case_study:
- *            type: string
- *          repo_link:
- *            type: string
- *          result_link:
- *            type: string
- */
-
 export const Portfolio = model<PortfolioDocument>('Portfolio', PortfolioSchema);

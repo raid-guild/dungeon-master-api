@@ -80,7 +80,8 @@ export const GUILD_CLASS = [
   'Paladin (Backend Dev)',
   'Monk (PM)',
   'Wizard (Smart Contracts)',
-  'Rogue (Legal)'
+  'Rogue (Legal)',
+  'Cleric (Account Manager)'
 ];
 
 export const RAID_STATUS = [
