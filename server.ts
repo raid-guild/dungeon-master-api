@@ -36,7 +36,7 @@ const createServer = (): Application => {
     typeDefs,
     resolvers,
     context: ({ req }) => {
-      if (CONFIG.NODE_ENV === 'production') {
+      if (CONFIG.ENVIRONMENT === 'production') {
         return validateRequest(req.headers.authorization);
       }
       return req;
@@ -56,7 +56,7 @@ const createServer = (): Application => {
   app.use(
     '/create',
     (req: Request, res: Response, next: NextFunction) => {
-      if (CONFIG.NODE_ENV === 'production') {
+      if (CONFIG.ENVIRONMENT === 'production') {
         try {
           validateRequest(req.headers.authorization);
           next();
@@ -72,7 +72,7 @@ const createServer = (): Application => {
   app.use(
     '/update',
     (req: Request, res: Response, next: NextFunction) => {
-      if (CONFIG.NODE_ENV === 'production') {
+      if (CONFIG.ENVIRONMENT === 'production') {
         try {
           validateRequest(req.headers.authorization);
           next();
