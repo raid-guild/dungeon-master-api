@@ -10,6 +10,7 @@ import UPDATE_ROUTER from './routes/update';
 
 import { typeDefs } from './schema/typedefs';
 import { resolvers } from './schema/resolvers';
+
 import { validateRequest } from './auth/token';
 import { CONFIG } from './config';
 

@@ -7,7 +7,7 @@ info:
 
 servers:
   - url: http://localhost:5000/
-    description: Local development server
+    description: Local API Docs
 
 components:
   securitySchemes:

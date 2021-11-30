@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const CONFIG = {
-  NODE_ENV: process.env.NODE_ENV,
+  ENVIRONMENT: process.env.ENVIRONMENT,
   MONGODB_URI:
     process.env.MONGODB_URI || 'mongodb://localhost:27017/rageshipper',
   PORT: process.env.PORT || 5000,

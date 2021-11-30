@@ -22,24 +22,4 @@ const RaidPartySchema = new Schema<RaidPartyDocument>(
   { timestamps: true }
 );
 
-/**
- * @swagger
- *  components:
- *    schemas:
- *      RaidParty:
- *        type: object
- *        required:
- *          - members
- *          - raid
- *          - created_on
- *          - modified_on
- *        properties:
- *          members:
- *            type: array
- *            items:
- *              type: string
- *          raid:
- *            type: string
- */
-
 export const RaidParty = model<RaidPartyDocument>('RaidParty', RaidPartySchema);
