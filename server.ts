@@ -9,7 +9,7 @@ import UPDATE_ROUTER from './routes/update';
 
 import { typeDefs } from './schema/typedefs';
 import { resolvers } from './schema/resolvers';
-import { authenticate } from './auth/token';
+// import { authenticate } from './auth/token';
 
 const apiDoc = YAML.load('./swagger.yaml');
 
@@ -34,13 +34,13 @@ const createServer = (): Application => {
 
   app.use(
     '/create',
-    authenticate,
+    // authenticate, TODO
     (req: Request, res: Response, next: NextFunction) => next(),
     CREATE_ROUTER
   );
   app.use(
     '/update',
-    authenticate,
+    // authenticate, TODO
     (req: Request, res: Response, next: NextFunction) => next(),
     UPDATE_ROUTER
   );
