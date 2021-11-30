@@ -20,6 +20,44 @@ security:
   - bearerAuth: []
 
 paths:
+  # CREATE TOKEN ---------------------------------------|
+  /auth/create/token:
+    post:
+      tags: [Auth]
+      requestBody:
+        name: auth
+        description: Create a new token to sign
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+      responses:
+        201:
+          description: Created a new token
+
+  # VERIFY SIGNATURE ---------------------------------------|
+  /auth/verify/signature:
+    post:
+      tags: [Auth]
+      requestBody:
+        name: auth
+        description: Verify the token signed
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                signature:
+                  type: string
+      responses:
+        201:
+          description: Signature verified
+
   # CREATE CONSULTATION ---------------------------------------|
   /create/consultation:
     post:
