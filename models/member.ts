@@ -9,7 +9,7 @@ const MemberSchema = new Schema<MemberDocument>(
   {
     legacy_id: {
       type: String,
-      required: true,
+      required: false,
       immutable: false
     },
     name: {
@@ -73,7 +73,8 @@ const MemberSchema = new Schema<MemberDocument>(
     membership_date: {
       type: Date,
       required: true,
-      immutable: false
+      immutable: false,
+      default: Date.now()
     },
     is_raiding: {
       type: Boolean,
