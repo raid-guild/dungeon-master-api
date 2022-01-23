@@ -81,7 +81,6 @@ export const resolvers = {
     async member(parent: any, { filters }: any): Promise<MemberInterface> {
       const shouldApplyIdFilter = !!filters._id;
       const shouldApplyEthFilter = !!filters.eth_address;
-      const shouldApplyLegacyFilter = !!filters.legacy_id;
 
       let response;
 
@@ -94,13 +93,6 @@ export const resolvers = {
         response = await member
           .findOne({
             eth_address: { $regex: filters.eth_address, $options: 'i' }
-          })
-          .populate('championed_by')
-          .populate('application');
-      } else if (shouldApplyLegacyFilter) {
-        response = await member
-          .findOne({
-            legacy_id: filters.legacy_id
           })
           .populate('championed_by')
           .populate('application');

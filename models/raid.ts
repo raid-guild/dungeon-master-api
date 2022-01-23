@@ -9,91 +9,64 @@ const RaidSchema = new Schema<RaidDocument>(
   {
     raid_name: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     status: {
       type: String,
       emum: RAID_STATUS,
-      required: true,
-      immutable: false
+      required: true
     },
     category: {
       type: String,
       enum: RAID_CATEGORY,
-      required: true,
-      immutable: false
+      required: true
     },
     cleric: {
       type: Schema.Types.ObjectId,
       ref: 'Member',
-      required: true,
-      immutable: false
+      required: true
     },
     roles_required: {
       type: [String],
       enum: GUILD_CLASS,
-      required: false,
-      immutable: false
+      required: false
     },
     raid_party: {
       type: Schema.Types.ObjectId,
       ref: 'RaidParty',
-      required: false,
-      immutable: false
+      required: false
     },
     invoice_address: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     start_date: {
       type: Date,
-      required: false,
-      immutable: false
+      required: false
     },
     end_date: {
       type: Date,
-      required: false,
-      immutable: false
+      required: false
     },
     comments: {
       type: [Schema.Types.ObjectId],
       ref: 'Comment',
-      required: false,
-      immutable: false
+      required: false
     },
     consultation: {
       type: Schema.Types.ObjectId,
       ref: 'Consultation',
-      required: false,
-      immutable: false
+      required: false
     },
     related_raids: {
       type: [Schema.Types.ObjectId],
       ref: 'Raid',
-      required: false,
-      immutable: false
+      required: false
     },
     portfolio: {
       type: Schema.Types.ObjectId,
       ref: 'Portfolio',
-      required: false,
-      immutable: false
-    },
-    legacy: {
-      airtable_id: {
-        type: String,
-        required: false
-      },
-      escrow_index: {
-        type: Number,
-        required: false
-      },
-      locker_hash: {
-        type: String,
-        required: false
-      }
+      required: false
     }
   },
   { timestamps: true }

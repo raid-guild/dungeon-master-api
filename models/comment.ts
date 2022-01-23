@@ -8,20 +8,17 @@ const CommentSchema = new Schema<CommentDocument>(
   {
     comment: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     commented_by: {
       type: Schema.Types.ObjectId,
       ref: 'Member',
-      required: true,
-      immutable: true
+      required: true
     },
     commented_raid: {
       type: Schema.Types.ObjectId,
       ref: 'Raid',
-      required: true,
-      immutable: false
+      required: true
     }
   },
   { timestamps: true }
