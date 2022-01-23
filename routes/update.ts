@@ -4,7 +4,6 @@ import { updateMemberById } from '../controllers/member';
 import { updateRaidById } from '../controllers/raid';
 import { updatePortfolioById } from '../controllers/portfolio';
 import { updateRaidPartyById } from '../controllers/raidparty';
-import { updateCommentById } from '../controllers/comment';
 
 const UPDATE_ROUTER = express.Router();
 
@@ -38,15 +37,6 @@ UPDATE_ROUTER.patch('/portfolio/:id', async (req: Request, res: Response) => {
 UPDATE_ROUTER.patch('/raidparty/:id', async (req: Request, res: Response) => {
   try {
     await updateRaidPartyById(req.params.id, req.body);
-    res.status(200).json(req.body);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-UPDATE_ROUTER.patch('/comment/:id', async (req: Request, res: Response) => {
-  try {
-    await updateCommentById(req.params.id, req.body);
     res.status(200).json(req.body);
   } catch (err) {
     res.status(500).json(err);
