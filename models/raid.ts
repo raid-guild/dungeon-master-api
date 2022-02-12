@@ -67,6 +67,20 @@ const RaidSchema = new Schema<RaidDocument>(
       type: Schema.Types.ObjectId,
       ref: 'Portfolio',
       required: false
+    },
+    legacy: {
+      airtable_id: {
+        type: String,
+        required: false
+      },
+      escrow_index: {
+        type: Number,
+        required: false
+      },
+      locker_hash: {
+        type: String,
+        required: false
+      }
     }
   },
   { timestamps: true }

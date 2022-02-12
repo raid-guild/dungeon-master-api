@@ -42,6 +42,10 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
       type: String,
       required: false
     },
+    preferred_contact: {
+      type: String,
+      required: false
+    },
     project_name: {
       type: String,
       required: true
@@ -55,7 +59,7 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
       enum: PROJECT_TYPE,
       required: true
     },
-    specs_type: {
+    project_specs: {
       type: String,
       enum: AVAILABLE_PROJECT_SPECS,
       required: true
@@ -73,7 +77,7 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
       type: Date,
       required: false
     },
-    budget_range: {
+    budget: {
       type: String,
       enum: BUDGET,
       required: true
