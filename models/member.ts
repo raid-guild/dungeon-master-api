@@ -9,89 +9,73 @@ const MemberSchema = new Schema<MemberDocument>(
   {
     legacy_id: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     name: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     email_address: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     discord_handle: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     telegram_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     twitter_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     github_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     eth_address: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     ens_name: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     guild_class: {
       type: String,
       enum: GUILD_CLASS,
-      required: true,
-      immutable: false
+      required: true
     },
     primary_skills: {
       type: [String],
       enum: SKILLS,
-      required: true,
-      immutable: false
+      required: true
     },
     secondary_skills: {
       type: [String],
       enum: SKILLS,
-      required: true,
-      immutable: false
+      required: true
     },
     membership_date: {
       type: Date,
-      required: true,
-      immutable: false
+      required: false
     },
     is_raiding: {
       type: Boolean,
       default: false,
-      required: true,
-      immutable: false
+      required: true
     },
     championed_by: {
       type: Schema.Types.ObjectId,
       ref: 'Member',
-      required: false,
-      immutable: false
+      required: false
     },
     application: {
       type: Schema.Types.ObjectId,
       ref: 'Application',
-      required: false,
-      immutable: false
+      required: false
     }
   },
   { timestamps: true }

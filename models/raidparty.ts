@@ -9,14 +9,12 @@ const RaidPartySchema = new Schema<RaidPartyDocument>(
     members: {
       type: [Schema.Types.ObjectId],
       ref: 'Member',
-      required: true,
-      immutable: false
+      required: true
     },
     raid: {
       type: Schema.Types.ObjectId,
       ref: 'Raid',
-      required: true,
-      immutable: false
+      required: true
     }
   },
   { timestamps: true }

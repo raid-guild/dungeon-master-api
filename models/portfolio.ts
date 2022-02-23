@@ -9,40 +9,33 @@ const PortfolioSchema = new Schema<PortfolioDocument>(
   {
     project_name: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     project_desc: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     category: {
       type: String,
       enum: RAID_CATEGORY,
-      required: true,
-      immutable: false
+      required: true
     },
     roles: {
       type: [String],
       enum: GUILD_CLASS,
-      required: true,
-      immutable: false
+      required: true
     },
     case_study: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     repo_link: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     },
     result_link: {
       type: String,
-      required: true,
-      immutable: false
+      required: true
     }
   },
   { timestamps: true }
