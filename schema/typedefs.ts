@@ -13,11 +13,11 @@ export const typeDefs = gql`
     project_name: String!
     project_link: String
     project_type: String!
-    specs_type: String!
+    project_specs: String!
     project_desc: String!
     services_req: [String!]!
     desired_delivery: String
-    budget_range: String!
+    budget: String!
     delivery_priorities: String!
     additional_info: String!
     submission_type: String!
@@ -59,6 +59,7 @@ export const typeDefs = gql`
 
   type Member {
     _id: ID!
+    legacy_id: String!
     name: String
     email_address: String!
     discord_handle: String!
@@ -77,6 +78,12 @@ export const typeDefs = gql`
     updatedAt: String!
   }
 
+  type RaidLegacy {
+    airtable_id: ID
+    escrow_index: Int
+    locker_hash: String
+  }
+
   type Raid {
     _id: ID!
     raid_name: String!
@@ -92,6 +99,7 @@ export const typeDefs = gql`
     consultation: Consultation
     related_raids: [Raid!]
     portfolio: Portfolio
+    legacy: RaidLegacy
     createdAt: String!
     updatedAt: String!
   }
@@ -147,5 +155,6 @@ export const typeDefs = gql`
   input MemberFilter {
     _id: String
     eth_address: String
+    legacy_id: String
   }
 `;

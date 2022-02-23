@@ -7,6 +7,10 @@ interface MemberDocument extends MemberInterface, Document {}
 
 const MemberSchema = new Schema<MemberDocument>(
   {
+    legacy_id: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true
