@@ -3,16 +3,17 @@ import { gql } from 'apollo-server-express';
 export const typeDefs = gql`
   type Consultation {
     _id: ID!
-    project_name: String!
     contact_name: String!
     contact_email: String!
     contact_bio: String!
     contact_discord: String
     contact_telegram: String
-    preferred_contact: String!
+    contact_twitter: String
+    contact_github: String
+    project_name: String!
+    project_link: String
     project_type: String!
     project_specs: String!
-    specs_link: String
     project_desc: String!
     services_req: [String!]!
     desired_delivery: String
@@ -20,9 +21,8 @@ export const typeDefs = gql`
     delivery_priorities: String!
     additional_info: String!
     submission_type: String!
+    submission_hash: String
     consultation_hash: String
-    feedback: String
-    rating: Int
     raid: Raid
     createdAt: String!
     updatedAt: String!

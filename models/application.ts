@@ -14,142 +14,118 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
   {
     name: {
       type: String,
-      required: true,
-      immutable: true
+      required: true
     },
     email_address: {
       type: String,
-      required: true,
-      immutable: true
+      required: true
     },
     discord_handle: {
       type: String,
-      required: true,
-      immutable: true
+      required: true
     },
     telegram_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     twitter_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     github_handle: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     eth_address: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     ens_name: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     introduction: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     learning_goals: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     primary_skills: {
       type: [String],
       enum: SKILLS,
-      required: true,
-      immutable: true
+      required: true
     },
     secondary_skills: {
       type: [String],
       enum: SKILLS,
-      required: true,
-      immutable: true
+      required: true
     },
     skill_type: {
       type: String,
       enum: SKILL_TYPE,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     passion: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     favorite_media: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     crypto_thrills: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     why_raidguild: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     dao_familiarity: {
       type: String,
       enum: DAO_FAMILIARITY,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     availability: {
       type: String,
       enum: COHORT_AVAILABILITY,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     crypto_exp: {
       type: String,
       required: true,
-      immutable: true,
       default: 'NA'
     },
     comments: {
       type: String,
-      required: false,
-      immutable: false
+      required: false
     },
     handbook_read: {
       type: Boolean,
       required: true,
-      immutable: true,
       default: false
     },
     pledge_readiness: {
       type: Boolean,
       required: true,
-      immutable: true,
       default: false
     },
     referred_by: {
       type: Schema.Types.ObjectId,
       ref: 'Member',
-      required: false,
-      immutable: false
+      required: false
     }
   },
   { timestamps: true }

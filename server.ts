@@ -1,50 +1,37 @@
-import express, { Request, Response, NextFunction, Application } from 'express';
+import express, { Request, Response, Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
-import YAML from 'yamljs';
 
 import CREATE_ROUTER from './routes/create';
 import UPDATE_ROUTER from './routes/update';
 
 import { typeDefs } from './schema/typedefs';
 import { resolvers } from './schema/resolvers';
-// import { authenticate } from './auth/token';
-
-const apiDoc = YAML.load('./swagger.yaml');
-
-function initializeApiDocs(_app) {
-  _app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(apiDoc, { explorer: true })
-  );
-}
+import { verifyToken, validateRequest } from './middlewares/auth';
 
 const createServer = (): Application => {
   const app = express();
 
-  initializeApiDocs(app);
-
   app.use(cors());
   app.use(express.json());
 
-  const server = new ApolloServer({ typeDefs, resolvers });
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: ({ req }) => {
+      if (!verifyToken(req)) throw Error('Unauthorized');
+    }
+  });
+
   server.applyMiddleware({ app });
 
-  app.use(
-    '/create',
-    // authenticate, TODO
-    (req: Request, res: Response, next: NextFunction) => next(),
-    CREATE_ROUTER
-  );
-  app.use(
-    '/update',
-    // authenticate, TODO
-    (req: Request, res: Response, next: NextFunction) => next(),
-    UPDATE_ROUTER
-  );
+  // ---------- CREATE ROUTES ----------
+  app.use('/create', validateRequest, CREATE_ROUTER);
 
+  // ---------- UPDATE ROUTES ----------
+  app.use('/update', validateRequest, UPDATE_ROUTER);
+
+  // ---------- ROOT REQUEST ----------
   app.get('/', (req: Request, res: Response) =>
     res.json('Welcome to Dungeon Master!')
   );
