@@ -59,7 +59,7 @@ export const typeDefs = gql`
 
   type Member {
     _id: ID!
-    legacy_id: String!
+    legacy_id: String
     name: String
     email_address: String!
     discord_handle: String!
