@@ -25,7 +25,6 @@ UPDATE_ROUTER.patch(
         req.params.submissionHash,
         req.body
       );
-      await updateRaidById(req.params.id, req.body);
       res.status(200).json(req.body);
     } catch (err) {
       res.status(500).json(err);
