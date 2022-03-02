@@ -4,6 +4,7 @@ import { updateMemberById } from '../controllers/member';
 import { updateRaidById } from '../controllers/raid';
 import { updatePortfolioById } from '../controllers/portfolio';
 import { updateRaidPartyById } from '../controllers/raidparty';
+import { updateConsultationBySubmissionHash } from '../controllers/consultation';
 
 const UPDATE_ROUTER = express.Router();
 
@@ -15,6 +16,22 @@ UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
     res.status(500).json(err);
   }
 });
+
+UPDATE_ROUTER.patch(
+  '/consultation/:submissionHash',
+  async (req: Request, res: Response) => {
+    try {
+      await updateConsultationBySubmissionHash(
+        req.params.submissionHash,
+        req.body
+      );
+      await updateRaidById(req.params.id, req.body);
+      res.status(200).json(req.body);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+);
 
 UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
   try {
