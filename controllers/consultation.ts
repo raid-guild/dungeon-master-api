@@ -9,11 +9,16 @@ export const createConsultation = async (
   return response;
 };
 
-export const updateConsultationById = async (
-  id: string,
+export const updateConsultationBySubmissionHash = async (
+  submissionHash: string,
   record: ConsultationInterface
 ): Promise<ConsultationInterface> => {
-  await consultation.updateOne({ _id: id }, { $set: record });
-  const updatedConsultation = await consultation.findById(id);
+  await consultation.updateOne(
+    { submission_hash: submissionHash },
+    { $set: record }
+  );
+  const updatedConsultation = await consultation.findOne({
+    submission_hash: submissionHash
+  });
   return updatedConsultation;
 };
