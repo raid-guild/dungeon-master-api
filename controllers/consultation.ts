@@ -1,6 +1,9 @@
 import { Consultation as consultation } from '../models/consultation';
 
-import { ConsultationInterface } from '../utils/types';
+import {
+  ConsultationInterface,
+  UpdateConsultHashInterface
+} from '../utils/types';
 
 export const createConsultation = async (
   record: ConsultationInterface
@@ -10,15 +13,14 @@ export const createConsultation = async (
 };
 
 export const updateConsultationBySubmissionHash = async (
-  submissionHash: string,
-  record: ConsultationInterface
+  data: UpdateConsultHashInterface
 ): Promise<ConsultationInterface> => {
   await consultation.updateOne(
-    { submission_hash: submissionHash },
-    { $set: record }
+    { submission_hash: data.submission_hash },
+    { $set: { consultation_hash: data.consultation_hash } }
   );
   const updatedConsultation = await consultation.findOne({
-    submission_hash: submissionHash
+    submission_hash: data.submission_hash
   });
   return updatedConsultation;
 };

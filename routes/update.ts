@@ -17,20 +17,14 @@ UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
   }
 });
 
-UPDATE_ROUTER.patch(
-  '/consultation/:submissionHash',
-  async (req: Request, res: Response) => {
-    try {
-      await updateConsultationBySubmissionHash(
-        req.params.submissionHash,
-        req.body
-      );
-      res.status(200).json(req.body);
-    } catch (err) {
-      res.status(500).json(err);
-    }
+UPDATE_ROUTER.patch('/consultation', async (req: Request, res: Response) => {
+  try {
+    await updateConsultationBySubmissionHash(req.body);
+    res.status(200).json(req.body);
+  } catch (err) {
+    res.status(500).json(err);
   }
-);
+});
 
 UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
   try {
