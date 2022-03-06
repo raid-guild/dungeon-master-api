@@ -144,3 +144,8 @@ export interface TokenInterface {
   token: string;
   eth_address: string;
 }
+
+export interface UpdateConsultHashInterface {
+  submission_hash: string;
+  consultation_hash: string;
+}
