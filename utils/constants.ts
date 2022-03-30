@@ -84,6 +84,8 @@ export const GUILD_CLASS = [
   'Cleric (Account Manager)'
 ];
 
+export const MEMBER_TYPE = ['Member', 'Apprentice'];
+
 export const RAID_STATUS = [
   'Awaiting',
   'Preparing',
