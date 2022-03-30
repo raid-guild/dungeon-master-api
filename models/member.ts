@@ -1,7 +1,7 @@
 import { Document, Schema, model } from 'mongoose';
 
 import { MemberInterface } from '../utils/types';
-import { GUILD_CLASS, SKILLS } from '../utils/constants';
+import { GUILD_CLASS, MEMBER_TYPE, SKILLS } from '../utils/constants';
 
 interface MemberDocument extends MemberInterface, Document {}
 
@@ -61,6 +61,12 @@ const MemberSchema = new Schema<MemberDocument>(
     membership_date: {
       type: Date,
       required: false
+    },
+    member_type: {
+      type: String,
+      enum: MEMBER_TYPE,
+      required: true,
+      default: MEMBER_TYPE[0]
     },
     is_raiding: {
       type: Boolean,
