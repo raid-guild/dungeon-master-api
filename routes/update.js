@@ -1,14 +1,16 @@
-import express, { Request, Response } from 'express';
+const express = require('express');
 
-import { updateMemberById } from '../controllers/member';
-import { updateRaidById } from '../controllers/raid';
-import { updatePortfolioById } from '../controllers/portfolio';
-import { updateRaidPartyById } from '../controllers/raidparty';
-import { updateConsultationBySubmissionHash } from '../controllers/consultation';
+const { updateMemberById } = require('../controllers/member');
+const { updateRaidById } = require('../controllers/raid');
+const { updatePortfolioById } = require('../controllers/portfolio');
+const { updateRaidPartyById } = require('../controllers/raidparty');
+const {
+  updateConsultationBySubmissionHash
+} = require('../controllers/consultation');
 
 const UPDATE_ROUTER = express.Router();
 
-UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
+UPDATE_ROUTER.patch('/member/:id', async (req, res) => {
   try {
     await updateMemberById(req.params.id, req.body);
     res.status(200).json(req.body);
@@ -17,7 +19,7 @@ UPDATE_ROUTER.patch('/member/:id', async (req: Request, res: Response) => {
   }
 });
 
-UPDATE_ROUTER.patch('/consultation', async (req: Request, res: Response) => {
+UPDATE_ROUTER.patch('/consultation', async (req, res) => {
   try {
     await updateConsultationBySubmissionHash(req.body);
     res.status(200).json(req.body);
@@ -26,7 +28,7 @@ UPDATE_ROUTER.patch('/consultation', async (req: Request, res: Response) => {
   }
 });
 
-UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
+UPDATE_ROUTER.patch('/raid/:id', async (req, res) => {
   try {
     await updateRaidById(req.params.id, req.body);
     res.status(200).json(req.body);
@@ -35,7 +37,7 @@ UPDATE_ROUTER.patch('/raid/:id', async (req: Request, res: Response) => {
   }
 });
 
-UPDATE_ROUTER.patch('/portfolio/:id', async (req: Request, res: Response) => {
+UPDATE_ROUTER.patch('/portfolio/:id', async (req, res) => {
   try {
     await updatePortfolioById(req.params.id, req.body);
     res.status(200).json(req.body);
@@ -44,7 +46,7 @@ UPDATE_ROUTER.patch('/portfolio/:id', async (req: Request, res: Response) => {
   }
 });
 
-UPDATE_ROUTER.patch('/raidparty/:id', async (req: Request, res: Response) => {
+UPDATE_ROUTER.patch('/raidparty/:id', async (req, res) => {
   try {
     await updateRaidPartyById(req.params.id, req.body);
     res.status(200).json(req.body);
@@ -53,4 +55,4 @@ UPDATE_ROUTER.patch('/raidparty/:id', async (req: Request, res: Response) => {
   }
 });
 
-export default UPDATE_ROUTER;
+module.exports = UPDATE_ROUTER;

@@ -1,18 +1,15 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { ConsultationInterface } from '../utils/types';
-import {
+const {
   PROJECT_TYPE,
   AVAILABLE_PROJECT_SPECS,
   SERVICES,
   BUDGET,
   DELIVERY_PRIORITIES,
   SUBMISSION_TYPE
-} from '../utils/constants';
+} = require('../utils/constants');
 
-interface ConsultationDocument extends ConsultationInterface, Document {}
-
-const ConsultationSchema = new Schema<ConsultationDocument>(
+const ConsultationSchema = new Schema(
   {
     contact_name: {
       type: String,
@@ -109,7 +106,6 @@ const ConsultationSchema = new Schema<ConsultationDocument>(
   { timestamps: true }
 );
 
-export const Consultation = model<ConsultationDocument>(
-  'Consultation',
-  ConsultationSchema
-);
+const Consultation = model('Consultation', ConsultationSchema);
+
+module.exports = { Consultation };

@@ -1,11 +1,8 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { PortfolioInterface } from '../utils/types';
-import { GUILD_CLASS, RAID_CATEGORY } from '../utils/constants';
+const { GUILD_CLASS, RAID_CATEGORY } = require('../utils/constants');
 
-interface PortfolioDocument extends PortfolioInterface, Document {}
-
-const PortfolioSchema = new Schema<PortfolioDocument>(
+const PortfolioSchema = new Schema(
   {
     project_name: {
       type: String,
@@ -41,4 +38,6 @@ const PortfolioSchema = new Schema<PortfolioDocument>(
   { timestamps: true }
 );
 
-export const Portfolio = model<PortfolioDocument>('Portfolio', PortfolioSchema);
+const Portfolio = model('Portfolio', PortfolioSchema);
+
+module.exports = { Portfolio };

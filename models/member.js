@@ -1,11 +1,8 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { MemberInterface } from '../utils/types';
-import { GUILD_CLASS, MEMBER_TYPE, SKILLS } from '../utils/constants';
+const { GUILD_CLASS, MEMBER_TYPE, SKILLS } = require('../utils/constants');
 
-interface MemberDocument extends MemberInterface, Document {}
-
-const MemberSchema = new Schema<MemberDocument>(
+const MemberSchema = new Schema(
   {
     legacy_id: {
       type: String,
@@ -87,4 +84,6 @@ const MemberSchema = new Schema<MemberDocument>(
   { timestamps: true }
 );
 
-export const Member = model<MemberDocument>('Member', MemberSchema);
+const Member = model('Member', MemberSchema);
+
+module.exports = { Member };

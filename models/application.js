@@ -1,16 +1,13 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { ApplicationInterface } from '../utils/types';
-import {
+const {
   SKILLS,
   SKILL_TYPE,
   DAO_FAMILIARITY,
   COHORT_AVAILABILITY
-} from '../utils/constants';
+} = require('../utils/constants');
 
-interface ApplicationDocument extends ApplicationInterface, Document {}
-
-const ApplicationSchema = new Schema<ApplicationDocument>(
+const ApplicationSchema = new Schema(
   {
     name: {
       type: String,
@@ -131,7 +128,6 @@ const ApplicationSchema = new Schema<ApplicationDocument>(
   { timestamps: true }
 );
 
-export const Application = model<ApplicationInterface>(
-  'Application',
-  ApplicationSchema
-);
+const Application = model('Application', ApplicationSchema);
+
+module.exports = { Application };
