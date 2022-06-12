@@ -27,10 +27,10 @@ const createServer = () => {
   server.applyMiddleware({ app });
 
   // ---------- CREATE ROUTES ----------
-  app.use('/create', () => !devMode && validateRequest, CREATE_ROUTER);
+  app.use('/create', (req, res, next) => !devMode ? validateRequest : next(), CREATE_ROUTER);
 
   // ---------- UPDATE ROUTES ----------
-  app.use('/update', () => !devMode && validateRequest, UPDATE_ROUTER);
+  app.use('/update', (req, res, next) => !devMode ? validateRequest : next(), UPDATE_ROUTER);
 
   // ---------- ROOT REQUEST ----------
   app.get('/', (req, res) => res.json('Welcome to Dungeon Master!'));
