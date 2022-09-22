@@ -1,4 +1,4 @@
-export const SERVICES = [
+const SERVICES = [
   'DAO (Design, Deployment)',
   'Development (Frontend, Backend)',
   'Marketing (Social Media, Copywriting, Memes/GIFs)',
@@ -13,29 +13,23 @@ export const SERVICES = [
   'Help me figure out what I need'
 ];
 
-export const PREFERRED_CONTACT = ['Discord', 'Email', 'Telegram'];
+const PREFERRED_CONTACT = ['Discord', 'Email', 'Telegram'];
 
-export const PROJECT_TYPE = ['New', 'Existing'];
+const PROJECT_TYPE = ['New', 'Existing'];
 
-export const AVAILABLE_PROJECT_SPECS = ['Yes', 'Partial', 'None'];
+const AVAILABLE_PROJECT_SPECS = ['Yes', 'Partial', 'None'];
 
-export const BUDGET = [
-  '< $5k',
-  '$5k - $20k',
-  '$20k - $50k',
-  '$50k +',
-  'Not Sure'
-];
+const BUDGET = ['< $5k', '$5k - $20k', '$20k - $50k', '$50k +', 'Not Sure'];
 
-export const DELIVERY_PRIORITIES = [
+const DELIVERY_PRIORITIES = [
   'Fast & Polished',
   'Fast & Inexpensive',
   'Polished & Inexpensive'
 ];
 
-export const SUBMISSION_TYPE = ['Paid', 'Unpaid'];
+const SUBMISSION_TYPE = ['Paid', 'Unpaid'];
 
-export const SKILLS = [
+const SKILLS = [
   'Frontend Dev',
   'Backend Dev',
   'Solidity',
@@ -57,11 +51,11 @@ export const SKILLS = [
   'Accounting'
 ];
 
-export const SKILL_TYPE = ['NA', 'Technical', 'Non - Technical', 'Other'];
+const SKILL_TYPE = ['NA', 'Technical', 'Non - Technical', 'Other'];
 
-export const DAO_FAMILIARITY = ['NA', 'Expert', 'Familiar', 'A Little', 'None'];
+const DAO_FAMILIARITY = ['NA', 'Expert', 'Familiar', 'A Little', 'None'];
 
-export const COHORT_AVAILABILITY = [
+const COHORT_AVAILABILITY = [
   'NA',
   '0-5 hours',
   '6-12 hours',
@@ -69,7 +63,7 @@ export const COHORT_AVAILABILITY = [
   '36+ hours'
 ];
 
-export const GUILD_CLASS = [
+const GUILD_CLASS = [
   'Tavern Keeper (Community)',
   'Archer (Design)',
   'Angry Dwarf (Treasury)',
@@ -84,15 +78,11 @@ export const GUILD_CLASS = [
   'Cleric (Account Manager)'
 ];
 
-export const RAID_STATUS = [
-  'Awaiting',
-  'Preparing',
-  'Raiding',
-  'Shipped',
-  'Lost'
-];
+const MEMBER_TYPE = ['Member', 'Apprentice'];
 
-export const RAID_CATEGORY = [
+const RAID_STATUS = ['Awaiting', 'Preparing', 'Raiding', 'Shipped', 'Lost'];
+
+const RAID_CATEGORY = [
   'Design Sprint',
   'Full Stack',
   'Wizarding',
@@ -100,3 +90,21 @@ export const RAID_CATEGORY = [
   'Frontend',
   'Marketing'
 ];
+
+module.exports = {
+  SERVICES,
+  PREFERRED_CONTACT,
+  PROJECT_TYPE,
+  AVAILABLE_PROJECT_SPECS,
+  BUDGET,
+  DELIVERY_PRIORITIES,
+  SUBMISSION_TYPE,
+  SKILLS,
+  SKILL_TYPE,
+  DAO_FAMILIARITY,
+  COHORT_AVAILABILITY,
+  GUILD_CLASS,
+  MEMBER_TYPE,
+  RAID_STATUS,
+  RAID_CATEGORY
+};

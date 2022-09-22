@@ -1,10 +1,6 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { CommentInterface } from '../utils/types';
-
-interface CommentDocument extends CommentInterface, Document {}
-
-const CommentSchema = new Schema<CommentDocument>(
+const CommentSchema = new Schema(
   {
     comment: {
       type: String,
@@ -24,4 +20,6 @@ const CommentSchema = new Schema<CommentDocument>(
   { timestamps: true }
 );
 
-export const Comment = model<CommentDocument>('Comment', CommentSchema);
+const Comment = model('Comment', CommentSchema);
+
+module.exports = { Comment };

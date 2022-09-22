@@ -1,11 +1,12 @@
-import { Document, Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 
-import { RaidInterface } from '../utils/types';
-import { GUILD_CLASS, RAID_STATUS, RAID_CATEGORY } from '../utils/constants';
+const {
+  GUILD_CLASS,
+  RAID_STATUS,
+  RAID_CATEGORY
+} = require('../utils/constants');
 
-interface RaidDocument extends RaidInterface, Document {}
-
-const RaidSchema = new Schema<RaidDocument>(
+const RaidSchema = new Schema(
   {
     raid_name: {
       type: String,
@@ -86,4 +87,6 @@ const RaidSchema = new Schema<RaidDocument>(
   { timestamps: true }
 );
 
-export const Raid = model<RaidDocument>('Raid', RaidSchema);
+const Raid = model('Raid', RaidSchema);
+
+module.exports = { Raid };

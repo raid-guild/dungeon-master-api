@@ -1,6 +1,6 @@
-import { gql } from 'apollo-server-express';
+const { gql } = require('apollo-server-express');
 
-export const typeDefs = gql`
+const typeDefs = gql`
   type Consultation {
     _id: ID!
     contact_name: String!
@@ -139,6 +139,7 @@ export const typeDefs = gql`
     applications: [Application]
     members: [Member]
     raids: [Raid]
+    invoices: [Raid]
     portfolios: [Portfolio]
     raidparties: [RaidParty]
     comments: [Comment]
@@ -158,3 +159,5 @@ export const typeDefs = gql`
     legacy_id: String
   }
 `;
+
+module.exports = { typeDefs };
