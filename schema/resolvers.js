@@ -32,6 +32,16 @@ const resolvers = {
         .populate('portfolio');
       return response;
     },
+    async invoices() {
+      const response = await Raid.find({ invoice_address: { $ne: null } })
+        .populate('cleric')
+        .populate('consultation')
+        .populate('raid_party')
+        .populate('comments')
+        .populate('related_raids')
+        .populate('portfolio');
+      return response;
+    },
     async portfolios() {
       const response = await Portfolio.find();
       return response;

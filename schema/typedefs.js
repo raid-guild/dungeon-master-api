@@ -139,6 +139,7 @@ const typeDefs = gql`
     applications: [Application]
     members: [Member]
     raids: [Raid]
+    invoices: [Raid]
     portfolios: [Portfolio]
     raidparties: [RaidParty]
     comments: [Comment]
